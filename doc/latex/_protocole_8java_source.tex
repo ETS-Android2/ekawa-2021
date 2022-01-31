@@ -1,0 +1,388 @@
+\hypertarget{_protocole_8java_source}{}\subsection{Protocole.\+java}
+\label{_protocole_8java_source}\index{Protocole.\+java@{Protocole.\+java}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{package }com.example.ekawa;
+00002 
+00003 \textcolor{keyword}{import} android.util.Log;
+00004 
+\Hypertarget{_protocole_8java_source_l00017}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{00017} \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}
+00018 \{
+\Hypertarget{_protocole_8java_source_l00022}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae9b68fa0daac528421b887f19413f8f5}{00022}     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae9b68fa0daac528421b887f19413f8f5}{TAG} = \textcolor{stringliteral}{"Protocole"};
+00023 
+00024     \textcolor{comment}{// Délimiteurs}
+\Hypertarget{_protocole_8java_source_l00025}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{00025}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME} = \textcolor{stringliteral}{"$ekawa;"};
+\Hypertarget{_protocole_8java_source_l00026}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{00026}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME} = \textcolor{stringliteral}{"\(\backslash\)r\(\backslash\)n"};
+00027 
+00028     \textcolor{comment}{// Les types de trame}
+\Hypertarget{_protocole_8java_source_l00029}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a710b865b4ce664d2adda2f5d5ccd6a72}{00029}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a710b865b4ce664d2adda2f5d5ccd6a72}{TEST\_ALIVE} = \textcolor{stringliteral}{"A"};
+\Hypertarget{_protocole_8java_source_l00030}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_acb81150b5809d8635dd3301fa376a1d6}{00030}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_acb81150b5809d8635dd3301fa376a1d6}{INDICATEUR\_PREPARATION\_CAFE} = \textcolor{stringliteral}{"C"};
+\Hypertarget{_protocole_8java_source_l00031}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add67f8989ac6672f498b8c9f085cd445}{00031}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add67f8989ac6672f498b8c9f085cd445}{REINITIALISER} = \textcolor{stringliteral}{"R"};
+\Hypertarget{_protocole_8java_source_l00032}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca55536aa2d416dbc4bf7856c6bae3c}{00032}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca55536aa2d416dbc4bf7856c6bae3c}{CREER\_PROGRAMMATION} = \textcolor{stringliteral}{"P"};
+\Hypertarget{_protocole_8java_source_l00033}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad05ba92eb443c22bdcd6d7a5a6928558}{00033}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad05ba92eb443c22bdcd6d7a5a6928558}{SUPPRIMER\_PROGRAMMATION} = \textcolor{stringliteral}{"S"};
+\Hypertarget{_protocole_8java_source_l00034}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab35c00ac601a9f2037ba8c95d9c09983}{00034}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab35c00ac601a9f2037ba8c95d9c09983}{ACTUALISATION\_CAFETIERE} = \textcolor{stringliteral}{"S1"};
+\Hypertarget{_protocole_8java_source_l00035}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a6313d18d5ca2b55181302f6ec96330}{00035}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a6313d18d5ca2b55181302f6ec96330}{ACTUALISATION\_MAGASIN} = \textcolor{stringliteral}{"S2"};
+\Hypertarget{_protocole_8java_source_l00036}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7751357fc287fe44de89ebd3fc9cee9b}{00036}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7751357fc287fe44de89ebd3fc9cee9b}{ACTUALISATION\_COMPLEMENTAIRE} = \textcolor{stringliteral}{"S3"};
+\Hypertarget{_protocole_8java_source_l00037}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8127ee50bdfb556779ad1c920c498e83}{00037}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8127ee50bdfb556779ad1c920c498e83}{ACTUALISATION\_PROGRAMMATION} = \textcolor{stringliteral}{"S4"};
+00038 
+00039     \textcolor{comment}{// Partie Cafetière}
+\Hypertarget{_protocole_8java_source_l00040}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_af6d747772dbddcd7e7b76745174645f0}{00040}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_af6d747772dbddcd7e7b76745174645f0}{EMPLACEMENT\_CAFETIERE} = 0;
+\Hypertarget{_protocole_8java_source_l00041}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6ba36890a3e7ff61391884071fc25a21}{00041}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6ba36890a3e7ff61391884071fc25a21}{CAFETIERE\_OCUPPEE} = \textcolor{stringliteral}{"0"};
+\Hypertarget{_protocole_8java_source_l00042}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a1722dd819850baa7e6ca765e66c581}{00042}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a1722dd819850baa7e6ca765e66c581}{CAFETIERE\_REPOS} = \textcolor{stringliteral}{"1"};
+00043 
+00044     \textcolor{comment}{// Partie Tasse}
+\Hypertarget{_protocole_8java_source_l00045}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca3da411b9d68caf3ac2ff0cdf55216}{00045}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca3da411b9d68caf3ac2ff0cdf55216}{EMPLACEMENT\_TASSE} = 1;
+\Hypertarget{_protocole_8java_source_l00046}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aec2265bfb60660cbf5dfb716f694bcfb}{00046}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aec2265bfb60660cbf5dfb716f694bcfb}{TASSE\_ABSENTE} = \textcolor{stringliteral}{"0"};
+\Hypertarget{_protocole_8java_source_l00047}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2f969365d74ec301bc9d76fb992ed9e6}{00047}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2f969365d74ec301bc9d76fb992ed9e6}{TASSE\_PRESENTE} = \textcolor{stringliteral}{"1"};
+00048 
+00049     \textcolor{comment}{// Partie Bac}
+\Hypertarget{_protocole_8java_source_l00050}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab60999720fc62237ae5f8c1e7921aa4d}{00050}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab60999720fc62237ae5f8c1e7921aa4d}{EMPLACEMENT\_BAC} = 2;
+\Hypertarget{_protocole_8java_source_l00051}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a499d999d5a6644a3f02bc63bd764e469}{00051}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a499d999d5a6644a3f02bc63bd764e469}{BAC\_PLEIN} = \textcolor{stringliteral}{"0"};
+\Hypertarget{_protocole_8java_source_l00052}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a790736e534bd8f87d62c5e1bdb759f45}{00052}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a790736e534bd8f87d62c5e1bdb759f45}{BAC\_VIDE} = \textcolor{stringliteral}{"1"};
+00053 
+00054     \textcolor{comment}{// Partie Eau}
+\Hypertarget{_protocole_8java_source_l00055}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2a6093ce136870c13b2ace7e46be9a5f}{00055}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2a6093ce136870c13b2ace7e46be9a5f}{EMPLACEMENT\_EAU} = 3;
+\Hypertarget{_protocole_8java_source_l00056}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_abba816d4dfe88be3a873669f2056aecc}{00056}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} Integer \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_abba816d4dfe88be3a873669f2056aecc}{NIVEAU\_EAU\_MIN} = 0;         
+\Hypertarget{_protocole_8java_source_l00057}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4318fa7c5638fd5da231029d1e2e9c99}{00057}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} Integer \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4318fa7c5638fd5da231029d1e2e9c99}{NIVEAU\_EAU\_MAX} = 100;       
+00058 
+00059     \textcolor{comment}{// Partie Capsules}
+\Hypertarget{_protocole_8java_source_l00060}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac7b6a2008b1195eae4628de3326bf97f}{00060}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac7b6a2008b1195eae4628de3326bf97f}{CAPSULE\_ABSENTE} = \textcolor{stringliteral}{"0"};
+\Hypertarget{_protocole_8java_source_l00061}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4cd76f0386b4691063c48c0e4d8d8e40}{00061}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4cd76f0386b4691063c48c0e4d8d8e40}{CAPSULE\_PRESENTE} = \textcolor{stringliteral}{"1"};
+00062 
+00063     \textcolor{comment}{// Partie Infomations complémentaires}
+\Hypertarget{_protocole_8java_source_l00064}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a328dc7d5ae0030abea78746a469d0301}{00064}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a328dc7d5ae0030abea78746a469d0301}{EMPLACEMENT\_NB\_CAFE} = 0;
+\Hypertarget{_protocole_8java_source_l00065}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac637e46d16d675adb3c0729055d259cd}{00065}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac637e46d16d675adb3c0729055d259cd}{EMPLACEMENT\_NB\_BAC\_VIDEE} = 1;
+\Hypertarget{_protocole_8java_source_l00066}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a3c7e43fc0589bd18f2e4631c509cbb59}{00066}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a3c7e43fc0589bd18f2e4631c509cbb59}{EMPLACEMENT\_NB\_EAU\_REMPLIE} = 2;
+\Hypertarget{_protocole_8java_source_l00067}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9345f9120d147cf525afc440f4746129}{00067}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9345f9120d147cf525afc440f4746129}{EMPLACEMENT\_DURETE\_EAU} = 3;
+\Hypertarget{_protocole_8java_source_l00068}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aeb21f04096c5f1220c172bfdfbdd5dae}{00068}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aeb21f04096c5f1220c172bfdfbdd5dae}{EMPLACEMENT\_QUALITE\_EAU} = 4;
+00069 
+00070     \textcolor{comment}{// Retours}
+\Hypertarget{_protocole_8java_source_l00071}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4e694989f44fe628753f5e65f6c8c08e}{00071}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4e694989f44fe628753f5e65f6c8c08e}{EMPLACEMENT\_RETOUR} = 0;
+\Hypertarget{_protocole_8java_source_l00072}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae7fcfc428ba9d1815daf59fcab12da13}{00072}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{char} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae7fcfc428ba9d1815daf59fcab12da13}{RETOUR\_INVALIDE} = \textcolor{charliteral}{'0'};
+\Hypertarget{_protocole_8java_source_l00073}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aa9b59014b7359878297b002afa160a46}{00073}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{char} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aa9b59014b7359878297b002afa160a46}{RETOUR\_VALIDE} = \textcolor{charliteral}{'1'};
+00074 
+00075     \textcolor{comment}{// Reinitialiser}
+\Hypertarget{_protocole_8java_source_l00076}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab93072e61ae443c91f07700a3f754a1c}{00076}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab93072e61ae443c91f07700a3f754a1c}{REINITIALISER\_NB\_CAFE} = 1;
+\Hypertarget{_protocole_8java_source_l00077}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a534fcc2db3caed0e7e6f969edde12f4d}{00077}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a534fcc2db3caed0e7e6f969edde12f4d}{REINITIALISER\_NB\_BAC\_VIDEE} = 1;
+\Hypertarget{_protocole_8java_source_l00078}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a627d052e923e3445296c0ea539ebc018}{00078}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a627d052e923e3445296c0ea539ebc018}{REINITIALISER\_NB\_EAU\_REMPLIE} = 1;
+\Hypertarget{_protocole_8java_source_l00079}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad0aa6e75515c4a47cf40a32ef5d88928}{00079}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad0aa6e75515c4a47cf40a32ef5d88928}{REINITIALISER\_DURETE\_EAU} = 0;
+\Hypertarget{_protocole_8java_source_l00080}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a201cf97045945715a64c2b055e9a59c3}{00080}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a201cf97045945715a64c2b055e9a59c3}{REINITIALISER\_QUALITE\_EAU} = 0;
+\Hypertarget{_protocole_8java_source_l00081}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2586e1d3430677cd425f4a462819c10c}{00081}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2586e1d3430677cd425f4a462819c10c}{REINITIALISER\_PROGRAMMATIONS} = 1;
+00082 
+00083     \textcolor{comment}{// Vérification}
+\Hypertarget{_protocole_8java_source_l00084}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae76a20c0852f58c7dd77110816d8d809}{00084}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae76a20c0852f58c7dd77110816d8d809}{EMPLACEMENT\_VERIFICATION} = 0;
+\Hypertarget{_protocole_8java_source_l00085}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aab437189a20d6f6447262ed50c666bde}{00085}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aab437189a20d6f6447262ed50c666bde}{EMPLACEMENT\_VERIFICATION\_PROGRAMMATION} = 
+      1;
+\Hypertarget{_protocole_8java_source_l00086}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a85fcaa3a9fda1a44914a52d0c2f79ed9}{00086}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a85fcaa3a9fda1a44914a52d0c2f79ed9}{VERIFICATION\_INVALIDE} = 0;
+\Hypertarget{_protocole_8java_source_l00087}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a84f1d8388a25297e50fbc3d293ecf3}{00087}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a84f1d8388a25297e50fbc3d293ecf3}{VERIFICATION\_VALIDE} = 1;
+00088 
+00089     \textcolor{comment}{// Programmation}
+\Hypertarget{_protocole_8java_source_l00090}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6250b8095974b868336c880dc5c68f7f}{00090}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6250b8095974b868336c880dc5c68f7f}{EMPLACEMENT\_TICKET} = 0;
+\Hypertarget{_protocole_8java_source_l00091}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a18dec2fc4aa359cbcb7a7fe04ea5614a}{00091}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a18dec2fc4aa359cbcb7a7fe04ea5614a}{ERREUR\_TICKET} = 0;
+00092 
+\Hypertarget{_protocole_8java_source_l00099}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a95497419a17cd6ba14663af6c20d7797}{00099}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a95497419a17cd6ba14663af6c20d7797}{fabriquerTramePreparationCafe}(\textcolor{keywordtype}{int} boissonActuelle, \textcolor{keywordtype}{
+      int} capsuleActuelle)
+00100     \{
+00101         String trame = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME};
+00102         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_acb81150b5809d8635dd3301fa376a1d6}{INDICATEUR\_PREPARATION\_CAFE} + \textcolor{stringliteral}{";"};
+00103         trame += boissonActuelle + \textcolor{stringliteral}{";"};
+00104         trame += capsuleActuelle;
+00105         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00106 
+00107         Log.d(TAG, \textcolor{stringliteral}{"Fabriquer trame = "} + trame);
+00108 
+00109         \textcolor{keywordflow}{return} trame;
+00110     \}
+00111 
+\Hypertarget{_protocole_8java_source_l00116}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6a93842b8987e56582d83c778305840a}{00116}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6a93842b8987e56582d83c778305840a}{fabriquerTrameTestAlive}()
+00117     \{
+00118         Log.d(TAG, \textcolor{stringliteral}{"fabriquerTrameTestAlive()"});
+00119         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a710b865b4ce664d2adda2f5d5ccd6a72}{TEST\_ALIVE} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00120     \}
+00121 
+\Hypertarget{_protocole_8java_source_l00126}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7b6e2d90184a17cdf7ee63b350486b3a}{00126}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7b6e2d90184a17cdf7ee63b350486b3a}{fabriquerTrameReinitialiser}()
+00127     \{
+00128         Log.d(TAG, \textcolor{stringliteral}{"fabriquerTrameReinitialiser()"});
+00129         String trame = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME};
+00130         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add67f8989ac6672f498b8c9f085cd445}{REINITIALISER} + \textcolor{stringliteral}{";"};
+00131         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab93072e61ae443c91f07700a3f754a1c}{REINITIALISER\_NB\_CAFE} + \textcolor{stringliteral}{";"};
+00132         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a534fcc2db3caed0e7e6f969edde12f4d}{REINITIALISER\_NB\_BAC\_VIDEE} + \textcolor{stringliteral}{";"};
+00133         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a627d052e923e3445296c0ea539ebc018}{REINITIALISER\_NB\_EAU\_REMPLIE} + \textcolor{stringliteral}{";"};
+00134         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad0aa6e75515c4a47cf40a32ef5d88928}{REINITIALISER\_DURETE\_EAU} + \textcolor{stringliteral}{";"};
+00135         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a201cf97045945715a64c2b055e9a59c3}{REINITIALISER\_QUALITE\_EAU} + \textcolor{stringliteral}{";"};
+00136         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2586e1d3430677cd425f4a462819c10c}{REINITIALISER\_PROGRAMMATIONS};
+00137         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00138         \textcolor{keywordflow}{return} trame;
+00139     \}
+00140 
+\Hypertarget{_protocole_8java_source_l00145}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a71e172b9adefa345ebff98663129f833}{00145}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a71e172b9adefa345ebff98663129f833}{fabriquerTrameActualisationCafetiere}()
+00146     \{
+00147         Log.d(TAG, \textcolor{stringliteral}{"fabriquerTrameActualisationCafetiere()"});
+00148         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab35c00ac601a9f2037ba8c95d9c09983}{ACTUALISATION\_CAFETIERE} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00149     \}
+00150 
+\Hypertarget{_protocole_8java_source_l00155}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aec8d32eecd3d497bc6c3d94c6e29450c}{00155}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aec8d32eecd3d497bc6c3d94c6e29450c}{fabriquerTrameActualisationMagasin}()
+00156     \{
+00157         Log.d(TAG, \textcolor{stringliteral}{"fabriquerTrameActualisationMagasin()"});
+00158         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a6313d18d5ca2b55181302f6ec96330}{ACTUALISATION\_MAGASIN} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00159     \}
+00160 
+\Hypertarget{_protocole_8java_source_l00165}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4a7fde713ecc0e7d8653f4610b58f1bf}{00165}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4a7fde713ecc0e7d8653f4610b58f1bf}{fabriquerTrameActualisationComplementaires}
+      ()
+00166     \{
+00167         Log.d(TAG, \textcolor{stringliteral}{"fabriquerTrameActualisationComplementaires()"});
+00168         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7751357fc287fe44de89ebd3fc9cee9b}{ACTUALISATION\_COMPLEMENTAIRE} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00169     \}
+00170 
+\Hypertarget{_protocole_8java_source_l00175}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac967186423a451ede7e4b9bc16a96222}{00175}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac967186423a451ede7e4b9bc16a96222}{fabriquerTrameCreerProgrammation}(\textcolor{keywordtype}{int} capsule, \textcolor{keywordtype}{int} 
+      boisson, \textcolor{keywordtype}{int} jour, String heure, \textcolor{keywordtype}{int} frequence)
+00176     \{
+00177         Log.d(TAG, \textcolor{stringliteral}{"fabriquerTrameCreerProgrammation()"});
+00178         String trame = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME};
+00179         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca55536aa2d416dbc4bf7856c6bae3c}{CREER\_PROGRAMMATION} + \textcolor{stringliteral}{";"};
+00180         trame += capsule + \textcolor{stringliteral}{";"};
+00181         trame += boisson + \textcolor{stringliteral}{";"};
+00182         trame += jour + \textcolor{stringliteral}{";"};
+00183         trame += heure + \textcolor{stringliteral}{";"};
+00184         trame += frequence;
+00185         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00186         \textcolor{keywordflow}{return} trame;
+00187     \}
+00188 
+\Hypertarget{_protocole_8java_source_l00193}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_afa3ca73b737062d6048c1a6cc9c8c79d}{00193}     \textcolor{keyword}{public} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_afa3ca73b737062d6048c1a6cc9c8c79d}{fabriquerTrameSupprimerProgrammation}(\textcolor{keywordtype}{int} 
+      ticket)
+00194     \{
+00195         Log.d(TAG, \textcolor{stringliteral}{"fabriquerTrameCreerProgrammation()"});
+00196         String trame = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME};
+00197         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad05ba92eb443c22bdcd6d7a5a6928558}{SUPPRIMER\_PROGRAMMATION} + \textcolor{stringliteral}{";"};
+00198         trame += ticket;
+00199         trame += \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aece1e2c0e4110c3d91fb69da213e847f}{FIN\_TRAME};
+00200         \textcolor{keywordflow}{return} trame;
+00201     \}
+00202 
+\Hypertarget{_protocole_8java_source_l00208}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{00208}     \textcolor{keyword}{private} \textcolor{keyword}{static} String[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(String trame)
+00209     \{
+00210         Log.d(TAG, \textcolor{stringliteral}{"decouperTrame()"});
+00211         \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab35c00ac601a9f2037ba8c95d9c09983}{ACTUALISATION\_CAFETIERE}))
+00212             trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab35c00ac601a9f2037ba8c95d9c09983}{ACTUALISATION\_CAFETIERE} + \textcolor{charliteral}{';'}, \textcolor{stringliteral}{
+      ""});
+00213         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a6313d18d5ca2b55181302f6ec96330}{ACTUALISATION\_MAGASIN}))
+00214             trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a6313d18d5ca2b55181302f6ec96330}{ACTUALISATION\_MAGASIN} + \textcolor{charliteral}{';'}, \textcolor{stringliteral}{""});
+00215         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7751357fc287fe44de89ebd3fc9cee9b}{ACTUALISATION\_COMPLEMENTAIRE}
+      ))
+00216             trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7751357fc287fe44de89ebd3fc9cee9b}{ACTUALISATION\_COMPLEMENTAIRE} + \textcolor{stringliteral}{";"}, \textcolor{stringliteral}{""});
+00217         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8127ee50bdfb556779ad1c920c498e83}{ACTUALISATION\_PROGRAMMATION})
+      )
+00218             trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8127ee50bdfb556779ad1c920c498e83}{ACTUALISATION\_PROGRAMMATION}
+       + \textcolor{stringliteral}{";"}, \textcolor{stringliteral}{""});
+00219         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add67f8989ac6672f498b8c9f085cd445}{REINITIALISER}))
+00220             trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add67f8989ac6672f498b8c9f085cd445}{REINITIALISER} + \textcolor{stringliteral}{";"}, \textcolor{stringliteral}{""});
+00221         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca55536aa2d416dbc4bf7856c6bae3c}{CREER\_PROGRAMMATION}))
+00222             trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca55536aa2d416dbc4bf7856c6bae3c}{CREER\_PROGRAMMATION} + \textcolor{stringliteral}{";"}, \textcolor{stringliteral}{""});
+00223         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad05ba92eb443c22bdcd6d7a5a6928558}{SUPPRIMER\_PROGRAMMATION}))
+00224             trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad05ba92eb443c22bdcd6d7a5a6928558}{SUPPRIMER\_PROGRAMMATION} + \textcolor{stringliteral}{";"}, \textcolor{stringliteral}{
+      ""});
+00225         \textcolor{keywordflow}{return} trame.split(\textcolor{stringliteral}{";"});
+00226     \}
+00227 
+\Hypertarget{_protocole_8java_source_l00233}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_abc2f21c6245695c5037bd0a2eac88799}{00233}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_abc2f21c6245695c5037bd0a2eac88799}{extraireValeurCafetiere}(String trame)
+00234     \{
+00235         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00236 
+00237         \textcolor{keywordtype}{boolean} etatCafetiere = \textcolor{keyword}{false};
+00238         \textcolor{keywordflow}{if}(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_af6d747772dbddcd7e7b76745174645f0}{EMPLACEMENT\_CAFETIERE}].equals(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a1722dd819850baa7e6ca765e66c581}{CAFETIERE\_REPOS}))
+00239             etatCafetiere = \textcolor{keyword}{true};
+00240         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_af6d747772dbddcd7e7b76745174645f0}{EMPLACEMENT\_CAFETIERE}].equals(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6ba36890a3e7ff61391884071fc25a21}{CAFETIERE\_OCUPPEE}))
+00241             etatCafetiere = \textcolor{keyword}{false};
+00242         \textcolor{keywordflow}{else}
+00243             Log.d(TAG, \textcolor{stringliteral}{"Erreur extraire etatCafetiere ! "} + valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_af6d747772dbddcd7e7b76745174645f0}{EMPLACEMENT\_CAFETIERE}]);
+00244 
+00245         Log.d(TAG, \textcolor{stringliteral}{"Extraire etatCafetiere = "} + etatCafetiere);
+00246 
+00247         \textcolor{keywordflow}{return} etatCafetiere;
+00248     \}
+00249 
+\Hypertarget{_protocole_8java_source_l00255}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae5e80461f082b4d2e469ee6841b9a380}{00255}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae5e80461f082b4d2e469ee6841b9a380}{extraireValeurTasse}(String trame)
+00256     \{
+00257         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00258 
+00259         \textcolor{keywordtype}{boolean} etatTasse = \textcolor{keyword}{false};
+00260         \textcolor{keywordflow}{if}(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca3da411b9d68caf3ac2ff0cdf55216}{EMPLACEMENT\_TASSE}].equals(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2f969365d74ec301bc9d76fb992ed9e6}{TASSE\_PRESENTE}))
+00261             etatTasse = \textcolor{keyword}{true};
+00262         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca3da411b9d68caf3ac2ff0cdf55216}{EMPLACEMENT\_TASSE}].equals(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aec2265bfb60660cbf5dfb716f694bcfb}{TASSE\_ABSENTE}))
+00263             etatTasse = \textcolor{keyword}{false};
+00264         \textcolor{keywordflow}{else}
+00265             Log.d(TAG, \textcolor{stringliteral}{"Erreur extraire etatTasse ! "} + valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca3da411b9d68caf3ac2ff0cdf55216}{EMPLACEMENT\_TASSE}]);
+00266 
+00267         Log.d(TAG, \textcolor{stringliteral}{"Extraire etatTasse = "} + etatTasse);
+00268 
+00269         \textcolor{keywordflow}{return} etatTasse;
+00270     \}
+00271 
+\Hypertarget{_protocole_8java_source_l00277}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a235ca0a3c40a50f4dc75346a60e54917}{00277}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a235ca0a3c40a50f4dc75346a60e54917}{extraireValeurBac}(String trame)
+00278     \{
+00279         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00280 
+00281         \textcolor{keywordtype}{boolean} etatBac = \textcolor{keyword}{false};
+00282         \textcolor{keywordflow}{if}(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab60999720fc62237ae5f8c1e7921aa4d}{EMPLACEMENT\_BAC}].equals(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a790736e534bd8f87d62c5e1bdb759f45}{BAC\_VIDE}))
+00283             etatBac = \textcolor{keyword}{true};
+00284         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab60999720fc62237ae5f8c1e7921aa4d}{EMPLACEMENT\_BAC}].equals(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a499d999d5a6644a3f02bc63bd764e469}{BAC\_PLEIN}))
+00285             etatBac = \textcolor{keyword}{false};
+00286         \textcolor{keywordflow}{else}
+00287             Log.d(TAG, \textcolor{stringliteral}{"Erreur extraire etatBac ! "} + valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab60999720fc62237ae5f8c1e7921aa4d}{EMPLACEMENT\_BAC}]);
+00288 
+00289         Log.d(TAG, \textcolor{stringliteral}{"Extraire etatBac = "} + etatBac);
+00290 
+00291         \textcolor{keywordflow}{return} etatBac;
+00292     \}
+00293 
+\Hypertarget{_protocole_8java_source_l00299}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad979442926a41d39052501267b5f5be3}{00299}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad979442926a41d39052501267b5f5be3}{extraireValeurEau}(String trame)
+00300     \{
+00301         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00302 
+00303         \textcolor{keywordtype}{int} niveauEau = 0;
+00304         \textcolor{keywordflow}{if}(Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2a6093ce136870c13b2ace7e46be9a5f}{EMPLACEMENT\_EAU}]) >= 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_abba816d4dfe88be3a873669f2056aecc}{NIVEAU\_EAU\_MIN} && Integer.parseInt(valeurs[3]) <= 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4318fa7c5638fd5da231029d1e2e9c99}{NIVEAU\_EAU\_MAX})
+00305             niveauEau = Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2a6093ce136870c13b2ace7e46be9a5f}{EMPLACEMENT\_EAU}]);
+00306         \textcolor{keywordflow}{else}
+00307             Log.d(TAG, \textcolor{stringliteral}{"Erreur extraire niveauEau ! "} + valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2a6093ce136870c13b2ace7e46be9a5f}{EMPLACEMENT\_EAU}]);
+00308 
+00309         Log.d(TAG, \textcolor{stringliteral}{"Extraire niveauEau = "} + niveauEau);
+00310 
+00311         \textcolor{keywordflow}{return} niveauEau;
+00312     \}
+00313 
+\Hypertarget{_protocole_8java_source_l00319}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab9ea349bfe2b76585f8e71677cacd867}{00319}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean}[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab9ea349bfe2b76585f8e71677cacd867}{extraireValeursCapsules}(String trame)
+00320     \{
+00321         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00322 
+00323         \textcolor{keywordtype}{boolean}[] etatsCapsules = \textcolor{keyword}{new} \textcolor{keywordtype}{boolean}[\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere}{Cafetiere}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a183d96e89c056c4ac9c565bf8f24851e}{NOMBRE\_CAPSULE\_MAX}];
+00324         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere}{Cafetiere}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a183d96e89c056c4ac9c565bf8f24851e}{NOMBRE\_CAPSULE\_MAX}; ++i)
+00325         \{
+00326             \textcolor{keywordflow}{if}(valeurs[i].equals(CAPSULE\_ABSENTE))
+00327                 etatsCapsules[i] = \textcolor{keyword}{false};
+00328             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(valeurs[i].equals(CAPSULE\_PRESENTE))
+00329                 etatsCapsules[i] = \textcolor{keyword}{true};
+00330             \textcolor{keywordflow}{else}
+00331                 Log.d(TAG, \textcolor{stringliteral}{"Erreur extraire état capsule n°"} + i + \textcolor{stringliteral}{" ! "} + valeurs[i]);
+00332             Log.d(TAG, \textcolor{stringliteral}{"Extraire état capsule n°"} + i + \textcolor{stringliteral}{" = "} + etatsCapsules[i]);
+00333         \}
+00334 
+00335         \textcolor{keywordflow}{return} etatsCapsules;
+00336     \}
+00337 
+\Hypertarget{_protocole_8java_source_l00343}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad76b79c64aaa9abed9a1219f3f28cb9a}{00343}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad76b79c64aaa9abed9a1219f3f28cb9a}{extraireNombreCafeTotal}(String trame)
+00344     \{
+00345         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00346 
+00347         \textcolor{keywordtype}{int} nombreCafeTotal = 0;
+00348         nombreCafeTotal = Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a328dc7d5ae0030abea78746a469d0301}{EMPLACEMENT\_NB\_CAFE}]);
+00349 
+00350         Log.d(TAG, \textcolor{stringliteral}{"Extraire nombreCafeTotal = "} + nombreCafeTotal);
+00351 
+00352         \textcolor{keywordflow}{return} nombreCafeTotal;
+00353     \}
+00354 
+\Hypertarget{_protocole_8java_source_l00360}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7cdbcbd7aa67f4b0cebb963725b0c67e}{00360}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7cdbcbd7aa67f4b0cebb963725b0c67e}{extraireNombreBacVide}(String trame)
+00361     \{
+00362         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00363 
+00364         \textcolor{keywordtype}{int} nombreBacVide = 0;
+00365         nombreBacVide = Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac637e46d16d675adb3c0729055d259cd}{EMPLACEMENT\_NB\_BAC\_VIDEE}]);
+00366 
+00367         Log.d(TAG, \textcolor{stringliteral}{"Extraire nombreBacVide = "} + nombreBacVide);
+00368 
+00369         \textcolor{keywordflow}{return} nombreBacVide;
+00370     \}
+00371 
+\Hypertarget{_protocole_8java_source_l00377}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae4aa9859ca0f359284c931e31732477f}{00377}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae4aa9859ca0f359284c931e31732477f}{extraireNombreEauRemplie}(String trame)
+00378     \{
+00379         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00380 
+00381         \textcolor{keywordtype}{int} nombreEauRemplie = 0;
+00382         nombreEauRemplie = Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a3c7e43fc0589bd18f2e4631c509cbb59}{EMPLACEMENT\_NB\_EAU\_REMPLIE}]);
+00383 
+00384         Log.d(TAG, \textcolor{stringliteral}{"Extraire nombreEauRemplie = "} + nombreEauRemplie);
+00385 
+00386         \textcolor{keywordflow}{return} nombreEauRemplie;
+00387     \}
+00388 
+\Hypertarget{_protocole_8java_source_l00394}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a3d092fccea3a5bf3a92810dbe90603b0}{00394}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a3d092fccea3a5bf3a92810dbe90603b0}{extraireDureteEau}(String trame)
+00395     \{
+00396         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00397 
+00398         \textcolor{keywordtype}{int} dureteEau = 0;
+00399         dureteEau = Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9345f9120d147cf525afc440f4746129}{EMPLACEMENT\_DURETE\_EAU}]);
+00400 
+00401         Log.d(TAG, \textcolor{stringliteral}{"Extraire dureteEau = "} + dureteEau);
+00402 
+00403         \textcolor{keywordflow}{return} dureteEau;
+00404     \}
+00405 
+\Hypertarget{_protocole_8java_source_l00411}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8f7c96aaa3fad76354e1cb4665c85e57}{00411}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8f7c96aaa3fad76354e1cb4665c85e57}{extraireQualiteEau}(String trame)
+00412     \{
+00413         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00414 
+00415         \textcolor{keywordtype}{int} qualiteEau = 0;
+00416         qualiteEau = Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aeb21f04096c5f1220c172bfdfbdd5dae}{EMPLACEMENT\_QUALITE\_EAU}]);
+00417 
+00418         Log.d(TAG, \textcolor{stringliteral}{"Extraire qualiteEau = "} + qualiteEau);
+00419 
+00420         \textcolor{keywordflow}{return} qualiteEau;
+00421     \}
+00422 
+\Hypertarget{_protocole_8java_source_l00423}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4997ef198a7f87d76c2f68849caae8d7}{00423}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4997ef198a7f87d76c2f68849caae8d7}{extraireTicket}(String trame)
+00424     \{
+00425         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00426 
+00427         \textcolor{keywordtype}{int} ticket = 0;
+00428         ticket = Integer.parseInt(valeurs[\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6250b8095974b868336c880dc5c68f7f}{EMPLACEMENT\_TICKET}]);
+00429 
+00430         Log.d(TAG, \textcolor{stringliteral}{"Extraire ticket = "} + ticket);
+00431 
+00432         \textcolor{keywordflow}{return} ticket;
+00433     \}
+00434 
+\Hypertarget{_protocole_8java_source_l00440}\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add9d5727209d29af21fa468e6929fe0b}{00440}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add9d5727209d29af21fa468e6929fe0b}{extraireVerification}(String trame)
+00441     \{
+00442         \textcolor{keywordtype}{int} position = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae76a20c0852f58c7dd77110816d8d809}{EMPLACEMENT\_VERIFICATION};;
+00443         \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8127ee50bdfb556779ad1c920c498e83}{ACTUALISATION\_PROGRAMMATION}))
+00444             position = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aab437189a20d6f6447262ed50c666bde}{EMPLACEMENT\_VERIFICATION\_PROGRAMMATION}
+      ;
+00445 
+00446         String[] valeurs = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a23c261e4ab5ad3c2ac60187f04ae40ea}{decouperTrame}(trame);
+00447 
+00448         \textcolor{keywordtype}{int} verification = Integer.parseInt(valeurs[position]);
+00449 
+00450         Log.d(TAG, \textcolor{stringliteral}{"Extraire vérification = "} + verification);
+00451 
+00452         \textcolor{keywordflow}{if}(verification == \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a84f1d8388a25297e50fbc3d293ecf3}{VERIFICATION\_VALIDE})
+00453             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+00454         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+00455     \}
+00456 \}
+\end{DoxyCode}

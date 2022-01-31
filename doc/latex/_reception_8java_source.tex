@@ -1,0 +1,89 @@
+\hypertarget{_reception_8java_source}{}\subsection{Reception.\+java}
+\label{_reception_8java_source}\index{Reception.\+java@{Reception.\+java}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{package }com.example.ekawa;
+00002 
+00003 \textcolor{keyword}{import} android.os.Handler;
+00004 \textcolor{keyword}{import} android.os.Message;
+00005 \textcolor{keyword}{import} android.util.Log;
+00006 
+00007 \textcolor{keyword}{import} java.io.BufferedReader;
+00008 \textcolor{keyword}{import} java.io.IOException;
+00009 \textcolor{keyword}{import} java.io.InputStreamReader;
+00010 
+\Hypertarget{_reception_8java_source_l00023}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception}{00023} \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception}{Reception} \textcolor{keyword}{extends} \hyperlink{class_thread}{Thread}
+00024 \{
+\Hypertarget{_reception_8java_source_l00025}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}{00025}     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}{TAG} = \textcolor{stringliteral}{"Reception"}; 
+\Hypertarget{_reception_8java_source_l00026}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{00026}     \textcolor{keyword}{private} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique} \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{peripherique};
+\Hypertarget{_reception_8java_source_l00027}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{00027}     \textcolor{keyword}{private} Handler \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler};
+\Hypertarget{_reception_8java_source_l00028}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}{00028}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}{fini} = \textcolor{keyword}{false};
+00029 
+\Hypertarget{_reception_8java_source_l00033}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a82ddcbf05814957889ace3961d8cfde6}{00033}     \textcolor{keyword}{public} \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a82ddcbf05814957889ace3961d8cfde6}{Reception}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique} peripherique, Handler handler)
+00034     \{
+00035         this.peripherique = \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{peripherique};
+00036         this.handler = \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler};
+00037     \}
+00038 
+00042     @Override
+\Hypertarget{_reception_8java_source_l00043}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ae5731cf974df539d32bfaded7b29d3c0}{00043}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ae5731cf974df539d32bfaded7b29d3c0}{run}()
+00044     \{
+00045         Log.d(TAG, \textcolor{stringliteral}{"Thread réception démarré"});
+00046         BufferedReader reception = \textcolor{keyword}{new} BufferedReader(\textcolor{keyword}{new} InputStreamReader(peripherique.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a8b88d0a0d9e0c1b1aae04ba7c9d24619}{obtenirFluxReception}()));
+00047         \textcolor{keywordflow}{while}(!fini)
+00048         \{
+00049             \textcolor{keywordflow}{try}
+00050             \{
+00051                 String trame = \textcolor{stringliteral}{""};
+00052                 \textcolor{keywordflow}{if}(reception.ready())
+00053                 \{
+00054                     trame = reception.readLine(); \textcolor{comment}{// Recupère la trame recue sans les délimiteurs de fin
+       (\(\backslash\)r\(\backslash\)n)}
+00055                 \}
+00056                 \textcolor{keywordflow}{if}(trame.length() > 0)
+00057                 \{
+00058                     Log.d(TAG, \textcolor{stringliteral}{"run() trame : "} + trame);
+00059                     \textcolor{keywordflow}{if}(handler != null)
+00060                     \{
+00061                         Message msg = Message.obtain();
+00062                         msg.what = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a532f5da1747b68217b8764db9b85e845}{CODE\_RECEPTION};
+00063                         msg.obj = trame;
+00064                         handler.sendMessage(msg);
+00065                     \}
+00066                 \}
+00067             \}
+00068             \textcolor{keywordflow}{catch} (IOException e)
+00069             \{
+00070                 Log.d(TAG, \textcolor{stringliteral}{"Erreur lecture socket !"});
+00071                  e.printStackTrace();
+00072             \}
+00073             \textcolor{keywordflow}{try}
+00074             \{
+00075                 \hyperlink{class_thread}{Thread}.sleep(250);
+00076             \}
+00077             \textcolor{keywordflow}{catch} (InterruptedException e)
+00078             \{
+00079                 e.printStackTrace();
+00080             \}
+00081         \}
+00082         Log.d(TAG, \textcolor{stringliteral}{"Thread réception arrêté"});
+00083     \}
+00084 
+\Hypertarget{_reception_8java_source_l00088}\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a844c65410aaeee936f6b0d44f9df56db}{00088}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a844c65410aaeee936f6b0d44f9df56db}{arreter}()
+00089     \{
+00090         \textcolor{keywordflow}{if} (fini == \textcolor{keyword}{false})
+00091         \{
+00092             fini = \textcolor{keyword}{true};
+00093         \}
+00094         \textcolor{keywordflow}{try}
+00095         \{
+00096             \hyperlink{class_thread}{Thread}.sleep(250);
+00097         \}
+00098         \textcolor{keywordflow}{catch} (InterruptedException e)
+00099         \{
+00100             e.printStackTrace();
+00101         \}
+00102     \}
+00103 \}
+\end{DoxyCode}

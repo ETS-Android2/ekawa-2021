@@ -1,0 +1,235 @@
+\hypertarget{classcom_1_1example_1_1ekawa_1_1_reception}{}\subsection{Référence de la classe com.\+example.\+ekawa.\+Reception}
+\label{classcom_1_1example_1_1ekawa_1_1_reception}\index{com.\+example.\+ekawa.\+Reception@{com.\+example.\+ekawa.\+Reception}}
+
+
+Permet la réception des trames du périphérique Bluetooth de la cafetière.  
+
+
+
+
+Graphe de collaboration de com.\+example.\+ekawa.\+Reception\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcom_1_1example_1_1ekawa_1_1_reception__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a844c65410aaeee936f6b0d44f9df56db}{arreter} ()
+\begin{DoxyCompactList}\small\item\em Méthode qui permet d\textquotesingle{}arreter la réception de trame. \end{DoxyCompactList}\item 
+\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a82ddcbf05814957889ace3961d8cfde6}{Reception} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique} \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{peripherique}, Handler \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler})
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}. \end{DoxyCompactList}\item 
+void \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ae5731cf974df539d32bfaded7b29d3c0}{run} ()
+\begin{DoxyCompactList}\small\item\em Méthode qui permet de recevoir des trames de la cafetière (thread) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+boolean \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}{fini} = false
+\item 
+Handler \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler}
+\item 
+\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique} \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{peripherique}
+\end{DoxyCompactItemize}
+\subsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static final String \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}{T\+AG} = \char`\"{}Reception\char`\"{}
+\begin{DoxyCompactList}\small\item\em T\+AG pour les logs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Description détaillée}
+Permet la réception des trames du périphérique Bluetooth de la cafetière. 
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00023}{23} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+
+
+\subsubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_reception_a82ddcbf05814957889ace3961d8cfde6}\label{classcom_1_1example_1_1ekawa_1_1_reception_a82ddcbf05814957889ace3961d8cfde6}} 
+\index{com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}!Reception@{Reception}}
+\index{Reception@{Reception}!com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}}
+\paragraph{\texorpdfstring{Reception()}{Reception()}}
+{\footnotesize\ttfamily com.\+example.\+ekawa.\+Reception.\+Reception (\begin{DoxyParamCaption}\item[{\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}}]{peripherique,  }\item[{Handler}]{handler }\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}. 
+
+
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00033}{33} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+
+
+Références \hyperlink{_reception_8java_source_l00027}{com.\+example.\+ekawa.\+Reception.\+handler}, et \hyperlink{_reception_8java_source_l00026}{com.\+example.\+ekawa.\+Reception.\+peripherique}.
+
+
+\begin{DoxyCode}
+00034     \{
+00035         this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{peripherique} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{peripherique};
+00036         this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler};
+00037     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_reception_a844c65410aaeee936f6b0d44f9df56db}\label{classcom_1_1example_1_1ekawa_1_1_reception_a844c65410aaeee936f6b0d44f9df56db}} 
+\index{com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}!arreter@{arreter}}
+\index{arreter@{arreter}!com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}}
+\paragraph{\texorpdfstring{arreter()}{arreter()}}
+{\footnotesize\ttfamily void com.\+example.\+ekawa.\+Reception.\+arreter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Méthode qui permet d\textquotesingle{}arreter la réception de trame. 
+
+
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00088}{88} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+
+
+Référencé par \hyperlink{_peripherique_8java_source_l00150}{com.\+example.\+ekawa.\+Peripherique.\+deconnecter()}.
+
+
+\begin{DoxyCode}
+00089     \{
+00090         \textcolor{keywordflow}{if} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}{fini} == \textcolor{keyword}{false})
+00091         \{
+00092             \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}{fini} = \textcolor{keyword}{true};
+00093         \}
+00094         \textcolor{keywordflow}{try}
+00095         \{
+00096             \hyperlink{class_thread}{Thread}.sleep(250);
+00097         \}
+00098         \textcolor{keywordflow}{catch} (InterruptedException e)
+00099         \{
+00100             e.printStackTrace();
+00101         \}
+00102     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_reception_ae5731cf974df539d32bfaded7b29d3c0}\label{classcom_1_1example_1_1ekawa_1_1_reception_ae5731cf974df539d32bfaded7b29d3c0}} 
+\index{com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}!run@{run}}
+\index{run@{run}!com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}}
+\paragraph{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void com.\+example.\+ekawa.\+Reception.\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Méthode qui permet de recevoir des trames de la cafetière (thread) 
+
+
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00043}{43} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+
+
+Références \hyperlink{_peripherique_8java_source_l00034}{com.\+example.\+ekawa.\+Peripherique.\+C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON}, et \hyperlink{_peripherique_8java_source_l00252}{com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Flux\+Reception()}.
+
+
+\begin{DoxyCode}
+00044     \{
+00045         Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}{TAG}, \textcolor{stringliteral}{"Thread réception démarré"});
+00046         BufferedReader reception = \textcolor{keyword}{new} BufferedReader(\textcolor{keyword}{new} InputStreamReader(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}{peripherique}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a8b88d0a0d9e0c1b1aae04ba7c9d24619}{obtenirFluxReception}()));
+00047         \textcolor{keywordflow}{while}(!\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}{fini})
+00048         \{
+00049             \textcolor{keywordflow}{try}
+00050             \{
+00051                 String trame = \textcolor{stringliteral}{""};
+00052                 \textcolor{keywordflow}{if}(reception.ready())
+00053                 \{
+00054                     trame = reception.readLine(); \textcolor{comment}{// Recupère la trame recue sans les délimiteurs de fin
+       (\(\backslash\)r\(\backslash\)n)}
+00055                 \}
+00056                 \textcolor{keywordflow}{if}(trame.length() > 0)
+00057                 \{
+00058                     Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}{TAG}, \textcolor{stringliteral}{"run() trame : "} + trame);
+00059                     \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler} != null)
+00060                     \{
+00061                         Message msg = Message.obtain();
+00062                         msg.what = Peripherique.CODE\_RECEPTION;
+00063                         msg.obj = trame;
+00064                         \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}{handler}.sendMessage(msg);
+00065                     \}
+00066                 \}
+00067             \}
+00068             \textcolor{keywordflow}{catch} (IOException e)
+00069             \{
+00070                 Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}{TAG}, \textcolor{stringliteral}{"Erreur lecture socket !"});
+00071                  e.printStackTrace();
+00072             \}
+00073             \textcolor{keywordflow}{try}
+00074             \{
+00075                 \hyperlink{class_thread}{Thread}.sleep(250);
+00076             \}
+00077             \textcolor{keywordflow}{catch} (InterruptedException e)
+00078             \{
+00079                 e.printStackTrace();
+00080             \}
+00081         \}
+00082         Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}{TAG}, \textcolor{stringliteral}{"Thread réception arrêté"});
+00083     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentation des données membres}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}\label{classcom_1_1example_1_1ekawa_1_1_reception_a10e50f0a5152056cf0c79c53bfa01cc9}} 
+\index{com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}!fini@{fini}}
+\index{fini@{fini}!com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}}
+\paragraph{\texorpdfstring{fini}{fini}}
+{\footnotesize\ttfamily boolean com.\+example.\+ekawa.\+Reception.\+fini = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00028}{28} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}\label{classcom_1_1example_1_1ekawa_1_1_reception_ab6273fbebb5aca17b9f95e275f1d3d38}} 
+\index{com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}!handler@{handler}}
+\index{handler@{handler}!com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}}
+\paragraph{\texorpdfstring{handler}{handler}}
+{\footnotesize\ttfamily Handler com.\+example.\+ekawa.\+Reception.\+handler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00027}{27} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+
+
+Référencé par \hyperlink{_reception_8java_source_l00033}{com.\+example.\+ekawa.\+Reception.\+Reception()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}\label{classcom_1_1example_1_1ekawa_1_1_reception_a9f41511c4449d90da78017ca698367ef}} 
+\index{com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}!peripherique@{peripherique}}
+\index{peripherique@{peripherique}!com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}}
+\paragraph{\texorpdfstring{peripherique}{peripherique}}
+{\footnotesize\ttfamily \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique} com.\+example.\+ekawa.\+Reception.\+peripherique\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00026}{26} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+
+
+Référencé par \hyperlink{_reception_8java_source_l00033}{com.\+example.\+ekawa.\+Reception.\+Reception()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}\label{classcom_1_1example_1_1ekawa_1_1_reception_a4e155d4690591616f1064e17764df72b}} 
+\index{com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}!T\+AG@{T\+AG}}
+\index{T\+AG@{T\+AG}!com\+::example\+::ekawa\+::\+Reception@{com\+::example\+::ekawa\+::\+Reception}}
+\paragraph{\texorpdfstring{T\+AG}{TAG}}
+{\footnotesize\ttfamily final String com.\+example.\+ekawa.\+Reception.\+T\+AG = \char`\"{}Reception\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+T\+AG pour les logs. 
+
+
+
+Définition à la ligne \hyperlink{_reception_8java_source_l00025}{25} du fichier \hyperlink{_reception_8java_source}{Reception.\+java}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_reception_8java}{Reception.\+java}\end{DoxyCompactItemize}

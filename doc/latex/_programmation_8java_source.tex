@@ -1,0 +1,128 @@
+\hypertarget{_programmation_8java_source}{}\subsection{Programmation.\+java}
+\label{_programmation_8java_source}\index{Programmation.\+java@{Programmation.\+java}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{package }com.example.ekawa;
+00002 
+\Hypertarget{_programmation_8java_source_l00015}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{00015} \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}
+00016 \{
+\Hypertarget{_programmation_8java_source_l00020}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a85d255c2386eb6751905a45dba634742}{00020}     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a85d255c2386eb6751905a45dba634742}{TAG} = \textcolor{stringliteral}{"Programmation"};
+00021 
+\Hypertarget{_programmation_8java_source_l00022}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a1167f22eb96c9c94bfc407aa3e166237}{00022}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a1167f22eb96c9c94bfc407aa3e166237}{MIN\_PROGRAMMATION} = 0;
+\Hypertarget{_programmation_8java_source_l00023}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a056f8e2549c22393882b7306223a64c2}{00023}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a056f8e2549c22393882b7306223a64c2}{MAX\_PROGRAMMATION} = 4;
+00024 
+\Hypertarget{_programmation_8java_source_l00025}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{00025}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} = \textcolor{stringliteral}{"programmation"};
+\Hypertarget{_programmation_8java_source_l00026}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a44b5687d27784aed685c77cf79d419fd}{00026}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a44b5687d27784aed685c77cf79d419fd}{CAPSULE} = \textcolor{stringliteral}{"capsule"};
+\Hypertarget{_programmation_8java_source_l00027}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a87e9e78f01480283f2d4fa9f14443034}{00027}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a87e9e78f01480283f2d4fa9f14443034}{BOISSON} = \textcolor{stringliteral}{"boisson"};
+\Hypertarget{_programmation_8java_source_l00028}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6ec3fe1846e45e6c0794eebdffeaf54b}{00028}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6ec3fe1846e45e6c0794eebdffeaf54b}{JOUR} = \textcolor{stringliteral}{"jour"};
+\Hypertarget{_programmation_8java_source_l00029}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aafa433ee13f4473d27cd7db34bbc4584}{00029}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aafa433ee13f4473d27cd7db34bbc4584}{HEURE} = \textcolor{stringliteral}{"heure"};
+\Hypertarget{_programmation_8java_source_l00030}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa5b1e7bbc58f4fef972e733498781a8e}{00030}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa5b1e7bbc58f4fef972e733498781a8e}{FREQUENCE} = \textcolor{stringliteral}{"frequence"};
+\Hypertarget{_programmation_8java_source_l00031}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa04b411478bfe88f8f53057dfca5c650}{00031}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa04b411478bfe88f8f53057dfca5c650}{TICKET} = \textcolor{stringliteral}{"ticket"};
+00032 
+\Hypertarget{_programmation_8java_source_l00033}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a79242eac5d971bdb23eaf4ab930f774d}{00033}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a79242eac5d971bdb23eaf4ab930f774d}{MODE\_CREATION} = \textcolor{keyword}{false};
+\Hypertarget{_programmation_8java_source_l00034}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a33fb0a465e66ba5854a07e3050c12c04}{00034}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a33fb0a465e66ba5854a07e3050c12c04}{MODE\_MODIFICATION} = \textcolor{keyword}{true};
+00035 
+\Hypertarget{_programmation_8java_source_l00036}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_jours}{00036}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_jours}{Jours}
+00037     \{
+00038         \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int}
+\Hypertarget{_programmation_8java_source_l00039}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_jours_af73668910813425a74baccc5940153ef}{00039}             \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_jours_af73668910813425a74baccc5940153ef}{LUNDI} = 0,
+00040             MARDI = 1,
+00041             MERCREDI = 2,
+00042             JEUDI = 3,
+00043             VENDREDI = 4,
+00044             SAMEDI = 5,
+00045             DIMANCHE = 6;
+00046 
+\Hypertarget{_programmation_8java_source_l00047}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_jours_a45d873d90f82a1cdeabeba21a37b7aba}{00047}         \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_jours_a45d873d90f82a1cdeabeba21a37b7aba}{JOURS} =
+00048         \{
+00049             \textcolor{stringliteral}{"Lundi"},
+00050             \textcolor{stringliteral}{"Mardi"},
+00051             \textcolor{stringliteral}{"Mercredi"},
+00052             \textcolor{stringliteral}{"Jeudi"},
+00053             \textcolor{stringliteral}{"Vendredi"},
+00054             \textcolor{stringliteral}{"Samedi"},
+00055             \textcolor{stringliteral}{"Dimanche"}
+00056         \};
+00057     \}
+00058 
+\Hypertarget{_programmation_8java_source_l00059}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_frequences}{00059}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_frequences}{Frequences}
+00060     \{
+00061         \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int}
+\Hypertarget{_programmation_8java_source_l00062}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_frequences_a92b76aab3e8479b140194ab329a0f3de}{00062}             UNE\_SEULE\_FOIS = 0,
+00063             TOUS\_LES\_JOURS = 1,
+00064             TOUTES\_LES\_SEMAINES = 2,
+00065             TOUS\_LES\_MOIS = 3;
+00066 
+\Hypertarget{_programmation_8java_source_l00067}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_1_1_frequences_afdc0109428ca2cc827cff55b8427cd50}{00067}         \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String[] FREQUENCES =
+00068         \{
+00069             \textcolor{stringliteral}{"Une seule fois"},
+00070             \textcolor{stringliteral}{"Tous les jours"},
+00071             \textcolor{stringliteral}{"Toutes les semaines"},
+00072             \textcolor{stringliteral}{"Tous les mois"}
+00073         \};
+00074     \}
+00075 
+\Hypertarget{_programmation_8java_source_l00076}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a97573a66f9b2821a7445c69f346a5298}{00076}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a97573a66f9b2821a7445c69f346a5298}{capsule};
+\Hypertarget{_programmation_8java_source_l00077}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a625a85ed4d0b16f52382fd458e0e5657}{00077}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a625a85ed4d0b16f52382fd458e0e5657}{boisson};
+\Hypertarget{_programmation_8java_source_l00078}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a96605063cb4177fa382b1ce2388f544f}{00078}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a96605063cb4177fa382b1ce2388f544f}{jour};
+\Hypertarget{_programmation_8java_source_l00079}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_abfff674f6cd5f76ea4b8c37e8c558ffa}{00079}     \textcolor{keyword}{private} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_abfff674f6cd5f76ea4b8c37e8c558ffa}{heure};
+\Hypertarget{_programmation_8java_source_l00080}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6d0fd682b51727025ed8c4bf35fc8980}{00080}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6d0fd682b51727025ed8c4bf35fc8980}{frequence};
+\Hypertarget{_programmation_8java_source_l00081}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a54ce49550025f7f5e5080f0548b08653}{00081}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a54ce49550025f7f5e5080f0548b08653}{ticket};
+00082 
+\Hypertarget{_programmation_8java_source_l00091}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a9119f0bd9f104d0fbccdff1ab1f0eb64}{00091}     \textcolor{keyword}{public} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a9119f0bd9f104d0fbccdff1ab1f0eb64}{Programmation}(\textcolor{keywordtype}{int} capsule, \textcolor{keywordtype}{int} boisson, \textcolor{keywordtype}{int} jour, String heure, \textcolor{keywordtype}{int} frequence)
+00092     \{
+00093         this.capsule = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a97573a66f9b2821a7445c69f346a5298}{capsule};
+00094         this.boisson = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a625a85ed4d0b16f52382fd458e0e5657}{boisson};
+00095         this.jour = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a96605063cb4177fa382b1ce2388f544f}{jour};
+00096         this.heure = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_abfff674f6cd5f76ea4b8c37e8c558ffa}{heure};
+00097         this.frequence = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6d0fd682b51727025ed8c4bf35fc8980}{frequence};
+00098         this.ticket = 0;
+00099     \}
+00100 
+\Hypertarget{_programmation_8java_source_l00110}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a06d8594e85da1735683f35228e7e6f8d}{00110}     \textcolor{keyword}{public} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a06d8594e85da1735683f35228e7e6f8d}{Programmation}(\textcolor{keywordtype}{int} capsule, \textcolor{keywordtype}{int} boisson, \textcolor{keywordtype}{int} jour, String heure, \textcolor{keywordtype}{int} frequence, \textcolor{keywordtype}{int} 
+      ticket)
+00111     \{
+00112         this.capsule = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a97573a66f9b2821a7445c69f346a5298}{capsule};
+00113         this.boisson = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a625a85ed4d0b16f52382fd458e0e5657}{boisson};
+00114         this.jour = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a96605063cb4177fa382b1ce2388f544f}{jour};
+00115         this.heure = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_abfff674f6cd5f76ea4b8c37e8c558ffa}{heure};
+00116         this.frequence = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6d0fd682b51727025ed8c4bf35fc8980}{frequence};
+00117         this.ticket = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a54ce49550025f7f5e5080f0548b08653}{ticket};
+00118     \}
+00119 
+\Hypertarget{_programmation_8java_source_l00124}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a48d39b49a1250bbfaf51e4c32e934da0}{00124}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a48d39b49a1250bbfaf51e4c32e934da0}{obtenirCapsule}()
+00125     \{
+00126         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a97573a66f9b2821a7445c69f346a5298}{capsule};
+00127     \}
+00128 
+\Hypertarget{_programmation_8java_source_l00133}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a325b9fb3bb7e041e783ecc0ed8234c20}{00133}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a325b9fb3bb7e041e783ecc0ed8234c20}{obtenirBoisson}()
+00134     \{
+00135         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a625a85ed4d0b16f52382fd458e0e5657}{boisson};
+00136     \}
+00137 
+\Hypertarget{_programmation_8java_source_l00142}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a0e5090c0968474d6887518b7ef659337}{00142}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a0e5090c0968474d6887518b7ef659337}{obtenirJour}()
+00143     \{
+00144         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a96605063cb4177fa382b1ce2388f544f}{jour};
+00145     \}
+00146 
+\Hypertarget{_programmation_8java_source_l00151}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ad8930be27ca5d1eed33c5e6729735897}{00151}     \textcolor{keyword}{public} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ad8930be27ca5d1eed33c5e6729735897}{obtenirHeure}()
+00152     \{
+00153         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_abfff674f6cd5f76ea4b8c37e8c558ffa}{heure};
+00154     \}
+00155 
+\Hypertarget{_programmation_8java_source_l00160}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa23acaed287ef27f86aec2771714a15f}{00160}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa23acaed287ef27f86aec2771714a15f}{obtenirFrequence}()
+00161     \{
+00162         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6d0fd682b51727025ed8c4bf35fc8980}{frequence};
+00163     \}
+00164 
+\Hypertarget{_programmation_8java_source_l00169}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a63e8701af99c5bd974e028ba53209887}{00169}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a63e8701af99c5bd974e028ba53209887}{obtenirTicket}()
+00170     \{
+00171         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a54ce49550025f7f5e5080f0548b08653}{ticket};
+00172     \}
+00173 
+\Hypertarget{_programmation_8java_source_l00178}\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_afb82bed29c60248fe8d966af8d6da897}{00178}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_afb82bed29c60248fe8d966af8d6da897}{changerTicket}(\textcolor{keywordtype}{int} ticket)
+00179     \{
+00180         this.ticket = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a54ce49550025f7f5e5080f0548b08653}{ticket};
+00181     \}
+00182 \}
+\end{DoxyCode}

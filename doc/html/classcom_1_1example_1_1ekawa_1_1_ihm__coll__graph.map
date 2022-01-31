@@ -1,0 +1,9 @@
+<map id="com.example.ekawa.Ihm" name="com.example.ekawa.Ihm">
+<area shape="rect" id="node2" href="$classcom_1_1example_1_1ekawa_1_1_cafetiere.html" title="Déclaration de la classe principale de l&#39;application. " alt="" coords="179,717,456,1337"/>
+<area shape="rect" id="node4" href="$classcom_1_1example_1_1ekawa_1_1_communication.html" title="Permet la communication Bluetooth avec la cafetière. " alt="" coords="257,1400,501,1800"/>
+<area shape="rect" id="node3" href="$classcom_1_1example_1_1ekawa_1_1_preference.html" title="Définit les caractéristiques des préfences de l&#39;utilisateur d&#39;EKAWA. " alt="" coords="266,189,489,471"/>
+<area shape="rect" id="node5" href="$classcom_1_1example_1_1ekawa_1_1_peripherique.html" title="Permet le dialogue avec le périphérique Bluetooth de la cafetière. " alt="" coords="507,864,725,1191"/>
+<area shape="rect" id="node6" href="$classcom_1_1example_1_1ekawa_1_1_reception.html" title="Permet la réception des trames du périphérique Bluetooth de la cafetière. " alt="" coords="623,1532,828,1668"/>
+<area shape="rect" id="node7" href="$class_thread.html" title="{Thread\n||}" alt="" coords="775,989,838,1066"/>
+<area shape="rect" id="node8" href="$classcom_1_1example_1_1ekawa_1_1_programmation.html" title="Définit les caractéristiques des programmations EKAWA. " alt="" coords="512,108,747,552"/>
+</map>

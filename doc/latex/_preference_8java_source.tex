@@ -1,0 +1,147 @@
+\hypertarget{_preference_8java_source}{}\subsection{Preference.\+java}
+\label{_preference_8java_source}\index{Preference.\+java@{Preference.\+java}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{package }com.example.ekawa;
+00002 
+00003 \textcolor{keyword}{import} android.content.SharedPreferences;
+00004 
+00005 \textcolor{keyword}{import} android.util.Log;
+00006 
+00007 \textcolor{keyword}{import} java.text.DateFormat;
+00008 \textcolor{keyword}{import} java.util.Date;
+00009 \textcolor{keyword}{import} java.util.Map;
+00010 
+\Hypertarget{_preference_8java_source_l00023}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{00023} \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}
+00024 \{
+\Hypertarget{_preference_8java_source_l00028}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_aeb5e1e787153c37929839622ac5d0339}{00028}     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_aeb5e1e787153c37929839622ac5d0339}{TAG} = \textcolor{stringliteral}{"Preference"};          
+00029 
+00030     \textcolor{comment}{// Noms des préférences de l'utilisateur}
+\Hypertarget{_preference_8java_source_l00031}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a64416823eba6f35e817636b31cb12265}{00031}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a64416823eba6f35e817636b31cb12265}{CAPSULE} = \textcolor{stringliteral}{"capsulePreferee"};
+\Hypertarget{_preference_8java_source_l00032}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a6923224bd12c5b50259e5f376ed58a35}{00032}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a6923224bd12c5b50259e5f376ed58a35}{BOISSON} = \textcolor{stringliteral}{"boissonPreferee"};
+\Hypertarget{_preference_8java_source_l00033}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a70095b2dd8748ba4bae554ff09d75d52}{00033}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a70095b2dd8748ba4bae554ff09d75d52}{DERNIERE\_DATE} = \textcolor{stringliteral}{"derniereDate"};
+\Hypertarget{_preference_8java_source_l00034}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a75bf6df7d252d793f34494240571a9ee}{00034}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a75bf6df7d252d793f34494240571a9ee}{NB\_CAFE\_DU\_JOUR} = \textcolor{stringliteral}{"nombreCafeDuJour"};
+00035 
+\Hypertarget{_preference_8java_source_l00036}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5ac49439bd1c8c3ff12dd9eb2475b894}{00036}     \textcolor{keyword}{private} SharedPreferences \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5ac49439bd1c8c3ff12dd9eb2475b894}{donneesUtilisateurs};
+00037 
+\Hypertarget{_preference_8java_source_l00041}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a2594deda470fb764d1ac8e06cf504411}{00041}     \textcolor{keyword}{public} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a2594deda470fb764d1ac8e06cf504411}{Preference}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm}{Ihm} ihm)
+00042     \{
+00043         Log.d(TAG, \textcolor{stringliteral}{"Preference()"});
+00044         donneesUtilisateurs = ihm.getPreferences(ihm.MODE\_PRIVATE);
+00045     \}
+00046 
+\Hypertarget{_preference_8java_source_l00052}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{00052}     \textcolor{keyword}{public} Object \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(String nomPreference)
+00053     \{
+00054         Log.d(TAG, \textcolor{stringliteral}{"obtenir() nomPreference = "} + nomPreference);
+00055         Map<String,?> donnees = donneesUtilisateurs.getAll();
+00056         Log.d(TAG, \textcolor{stringliteral}{"obtenir() donnees = "} + donnees);
+00057         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(nomPreference))
+00058             \textcolor{keywordflow}{return} donnees.get(nomPreference);
+00059         \textcolor{keywordflow}{else}
+00060             \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+00061     \}
+00062 
+\Hypertarget{_preference_8java_source_l00063}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5a8f4c9f845924a0ebb3aec5ca99a5f5}{00063}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5a8f4c9f845924a0ebb3aec5ca99a5f5}{obtenirNombreCafeDuJour}(String date, \textcolor{keywordtype}{int} nombreCafeDuJour)
+00064     \{
+00065         date = DateFormat.getDateInstance().format(\textcolor{keyword}{new} Date());
+00066         \textcolor{keywordflow}{if}(!\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a70095b2dd8748ba4bae554ff09d75d52}{DERNIERE\_DATE}))
+00067             \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a70095b2dd8748ba4bae554ff09d75d52}{DERNIERE\_DATE}, date);
+00068         \textcolor{keywordflow}{if}(!\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a75bf6df7d252d793f34494240571a9ee}{NB\_CAFE\_DU\_JOUR}))
+00069             \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a75bf6df7d252d793f34494240571a9ee}{NB\_CAFE\_DU\_JOUR}, nombreCafeDuJour);
+00070 
+00071         \textcolor{keywordflow}{if}(date.equals((String) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a70095b2dd8748ba4bae554ff09d75d52}{DERNIERE\_DATE})))
+00072             nombreCafeDuJour = (\textcolor{keywordtype}{int}) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a75bf6df7d252d793f34494240571a9ee}{NB\_CAFE\_DU\_JOUR});
+00073         \textcolor{keywordflow}{else}
+00074         \{
+00075             \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a75bf6df7d252d793f34494240571a9ee}{NB\_CAFE\_DU\_JOUR}, nombreCafeDuJour);
+00076             \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a70095b2dd8748ba4bae554ff09d75d52}{DERNIERE\_DATE}, date);
+00077             nombreCafeDuJour = 0;
+00078         \}
+00079         \textcolor{keywordflow}{return} nombreCafeDuJour;
+00080     \}
+00081 
+\Hypertarget{_preference_8java_source_l00087}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{00087}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(String nomPreference)
+00088     \{
+00089         Log.d(TAG, \textcolor{stringliteral}{"contient()"});
+00090         \textcolor{keywordflow}{if}(donneesUtilisateurs.contains(nomPreference))
+00091             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+00092         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+00093     \}
+00094 
+\Hypertarget{_preference_8java_source_l00100}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{00100}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(String nomPreference, String valeur)
+00101     \{
+00102         Log.d(TAG, \textcolor{stringliteral}{"editer(String)"});
+00103         donneesUtilisateurs.edit().putString(nomPreference, valeur).apply();
+00104     \}
+00105 
+\Hypertarget{_preference_8java_source_l00111}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a7c14e4d338ffca5c03fda6b16289d8ce}{00111}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a7c14e4d338ffca5c03fda6b16289d8ce}{editer}(String nomPreference, \textcolor{keywordtype}{int} valeur)
+00112     \{
+00113         Log.d(TAG, \textcolor{stringliteral}{"editer(int)"});
+00114         donneesUtilisateurs.edit().putInt(nomPreference, valeur).apply();
+00115     \}
+00116 
+\Hypertarget{_preference_8java_source_l00122}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a701dc293c4474f59028733e94b49b9da}{00122}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a701dc293c4474f59028733e94b49b9da}{editer}(String nomPreference, \textcolor{keywordtype}{boolean} valeur)
+00123     \{
+00124         Log.d(TAG, \textcolor{stringliteral}{"editer(boolean)"});
+00125         donneesUtilisateurs.edit().putBoolean(nomPreference, valeur).apply();
+00126     \}
+00127 
+\Hypertarget{_preference_8java_source_l00132}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a63914421a8e7b8f79822853e3aff3106}{00132}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a63914421a8e7b8f79822853e3aff3106}{supprimer}(String nomPreference)
+00133     \{
+00134         Log.d(TAG, \textcolor{stringliteral}{"supprimer()"});
+00135         donneesUtilisateurs.edit().remove(nomPreference).apply();
+00136     \}
+00137 
+00138 
+\Hypertarget{_preference_8java_source_l00142}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_aec0e98bb3cfb4d104c5c86a4259c56b5}{00142}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_aec0e98bb3cfb4d104c5c86a4259c56b5}{supprimerLesProgrammations}()
+00143     \{
+00144         Log.d(TAG, \textcolor{stringliteral}{"supprimerLesProgrammations()"});
+00145         \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = 0;
+00146         \textcolor{keywordflow}{while}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + \textcolor{keywordtype}{id}))
+00147         \{
+00148             String idProgrammation = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + id;
+00149             \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a63914421a8e7b8f79822853e3aff3106}{supprimer}(idProgrammation);
+00150             ++id;
+00151         \}
+00152     \}
+00153 
+\Hypertarget{_preference_8java_source_l00157}\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a98ab818534d930d51fa09de962780fe3}{00157}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a98ab818534d930d51fa09de962780fe3}{reorganiserLesProgrammations}(\textcolor{keywordtype}{int} position)
+00158     \{
+00159         Log.d(TAG, \textcolor{stringliteral}{"reorganiserLesProgrammations()"});
+00160         \textcolor{keywordflow}{if}(position >= \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a1167f22eb96c9c94bfc407aa3e166237}{MIN\_PROGRAMMATION} && position < 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a056f8e2549c22393882b7306223a64c2}{MAX\_PROGRAMMATION})
+00161         \{
+00162             \textcolor{keywordtype}{int} anciennePosition = position + 1;
+00163             String idAncienneProgrammation = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + anciennePosition;
+00164             String idNouvelleProgrammation = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + position;
+00165             \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(idAncienneProgrammation))
+00166             \{
+00167                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation, (\textcolor{keywordtype}{int}) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idAncienneProgrammation));
+00168                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a44b5687d27784aed685c77cf79d419fd}{CAPSULE}, (\textcolor{keywordtype}{int}) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idAncienneProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a44b5687d27784aed685c77cf79d419fd}{CAPSULE}));
+00169                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a87e9e78f01480283f2d4fa9f14443034}{BOISSON}, (\textcolor{keywordtype}{int}) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idAncienneProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a87e9e78f01480283f2d4fa9f14443034}{BOISSON}));
+00170                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6ec3fe1846e45e6c0794eebdffeaf54b}{JOUR}, (\textcolor{keywordtype}{int}) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idAncienneProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6ec3fe1846e45e6c0794eebdffeaf54b}{JOUR}));
+00171                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aafa433ee13f4473d27cd7db34bbc4584}{HEURE}, (String) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idAncienneProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aafa433ee13f4473d27cd7db34bbc4584}{HEURE}));
+00172                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa5b1e7bbc58f4fef972e733498781a8e}{FREQUENCE}, (\textcolor{keywordtype}{int}) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idAncienneProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa5b1e7bbc58f4fef972e733498781a8e}{FREQUENCE}));
+00173                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa04b411478bfe88f8f53057dfca5c650}{TICKET}, (\textcolor{keywordtype}{int}) \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idAncienneProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa04b411478bfe88f8f53057dfca5c650}{TICKET}));
+00174 
+00175                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a63914421a8e7b8f79822853e3aff3106}{supprimer}(idAncienneProgrammation);
+00176             \}
+00177             \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a98ab818534d930d51fa09de962780fe3}{reorganiserLesProgrammations}(anciennePosition);
+00178         \}
+00179     \}
+00180 \}
+\end{DoxyCode}

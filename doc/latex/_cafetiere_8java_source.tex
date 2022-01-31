@@ -1,0 +1,686 @@
+\hypertarget{_cafetiere_8java_source}{}\subsection{Cafetiere.\+java}
+\label{_cafetiere_8java_source}\index{Cafetiere.\+java@{Cafetiere.\+java}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{package }com.example.ekawa;
+00002 
+00003 \textcolor{keyword}{import} android.util.Log;
+00004 
+00005 \textcolor{keyword}{import} android.widget.Toast;
+00006 
+00007 \textcolor{keyword}{import} java.lang.reflect.ParameterizedType;
+00008 \textcolor{keyword}{import} java.util.ArrayList;
+00009 
+\Hypertarget{_cafetiere_8java_source_l00022}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere}{00022} \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere}{Cafetiere}
+00023 \{
+\Hypertarget{_cafetiere_8java_source_l00027}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aa0c1fd99a2508b06c462aea17034aa91}{00027}     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aa0c1fd99a2508b06c462aea17034aa91}{TAG} = \textcolor{stringliteral}{"Cafetiere"};          
+\Hypertarget{_cafetiere_8java_source_l00028}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a5a23a636fa5f2e5826458e700f453c16}{00028}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a5a23a636fa5f2e5826458e700f453c16}{AUCUNE\_CAPSULE} = -1;            
+\Hypertarget{_cafetiere_8java_source_l00029}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a183d96e89c056c4ac9c565bf8f24851e}{00029}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} Integer \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a183d96e89c056c4ac9c565bf8f24851e}{NOMBRE\_CAPSULE\_MAX} = 8;     
+\Hypertarget{_cafetiere_8java_source_l00030}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2be5950bf3bb155b8396593d390b808b}{00030}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keyword}{final} Integer \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2be5950bf3bb155b8396593d390b808b}{NOMBRE\_BOISSON\_MAX} = 2;     
+\Hypertarget{_cafetiere_8java_source_l00031}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a9e0cce07580820dfbc85696f1fb82aef}{00031}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a9e0cce07580820dfbc85696f1fb82aef}{NB\_MAX\_CAFE\_CONSEILLEE} = 4;     
+\Hypertarget{_cafetiere_8java_source_l00032}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a5b10663105c7e3fd28dfd9d51b5e925f}{00032}     \textcolor{keyword}{public} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a5b10663105c7e3fd28dfd9d51b5e925f}{NOM\_CAFETIERE\_NON\_CONNECTEE} = \textcolor{stringliteral}{"Aucune"}; 
+00033 
+\Hypertarget{_cafetiere_8java_source_l00037}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a127a27c8f3b4c6c5dc4bfb639f654b3d}{00037}     \textcolor{keyword}{private} String[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a127a27c8f3b4c6c5dc4bfb639f654b3d}{nomsCapusles} = \{
+00038             \textcolor{stringliteral}{"Colombia"},
+00039             \textcolor{stringliteral}{"Indonesia"},
+00040             \textcolor{stringliteral}{"Ethiopia"},
+00041             \textcolor{stringliteral}{"Volluto"},
+00042             \textcolor{stringliteral}{"Capriccio"},
+00043             \textcolor{stringliteral}{"Cosi"},
+00044             \textcolor{stringliteral}{"Scuro"},
+00045             \textcolor{stringliteral}{"Vanilla Eclair"}
+00046     \}; 
+00047 
+\Hypertarget{_cafetiere_8java_source_l00048}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a7558b3f423bd53d4198a7c143bd2d657}{00048}     \textcolor{keyword}{private} Integer[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a7558b3f423bd53d4198a7c143bd2d657}{idImagesCapsules} =
+00049     \{
+00050             R.mipmap.ic\_capsule\_colombia,
+00051             R.mipmap.ic\_capsule\_indonesia,
+00052             R.mipmap.ic\_capsule\_ethiopia,
+00053             R.mipmap.ic\_capsule\_volluto,
+00054             R.mipmap.ic\_capsule\_capriccio,
+00055             R.mipmap.ic\_capsule\_cosi,
+00056             R.mipmap.ic\_capsule\_scuro,
+00057             R.mipmap.ic\_capsule\_vanilla\_eclair
+00058     \};
+00059 
+\Hypertarget{_cafetiere_8java_source_l00060}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aebaaf300362a258e047ae31b7e56e622}{00060}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean}[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aebaaf300362a258e047ae31b7e56e622}{presencesCapsules} = \{ \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{true}, \textcolor{keyword}{true}
+       \};
+00061 
+\Hypertarget{_cafetiere_8java_source_l00062}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a59db420b33a9f03aad97d6cad4f87c03}{00062}     \textcolor{keyword}{private} String[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a59db420b33a9f03aad97d6cad4f87c03}{nomsBoissons} = \{ \textcolor{stringliteral}{"Court"}, \textcolor{stringliteral}{"Long"} \};
+00063 
+\Hypertarget{_cafetiere_8java_source_l00064}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a10645115a166d3529e63aeb4ea16a869}{00064}     \textcolor{keyword}{private} Integer[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a10645115a166d3529e63aeb4ea16a869}{idImagesBoissons} = \{ R.drawable.ic\_cafe\_court, R.drawable.
+      ic\_cafe\_long \};
+00065 
+\Hypertarget{_cafetiere_8java_source_l00066}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a054b6a7668e317cfa1da3d8600311e4e}{00066}     \textcolor{keyword}{private} Integer[] \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a054b6a7668e317cfa1da3d8600311e4e}{descriptionCapsules} = \{
+00067             R.string.colombia,
+00068             R.string.indonesia,
+00069             R.string.ethiopia,
+00070             R.string.volluto,
+00071             R.string.capriccio,
+00072             R.string.cosi,
+00073             R.string.scuro,
+00074             R.string.vanilla\_eclair
+00075     \};
+00076 
+\Hypertarget{_cafetiere_8java_source_l00077}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae5fa359f1ddcbd80ce3651e2d7368ff8}{00077}     \textcolor{keyword}{private} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae5fa359f1ddcbd80ce3651e2d7368ff8}{derniereProgrammation};
+\Hypertarget{_cafetiere_8java_source_l00078}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a79faede6506425563ec617affef48e09}{00078}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a79faede6506425563ec617affef48e09}{derniereSuppressionProgrammation};
+00079 
+\Hypertarget{_cafetiere_8java_source_l00080}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a7db4a63088834eda5f6a3e951611bf82}{00080}     \textcolor{keyword}{private} \hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm}{Ihm} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a7db4a63088834eda5f6a3e951611bf82}{ihm};
+\Hypertarget{_cafetiere_8java_source_l00081}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_af9506a7805d000d2cb83444cdb8ea889}{00081}     \textcolor{keyword}{private} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication}{Communication} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_af9506a7805d000d2cb83444cdb8ea889}{communication} = null;
+\Hypertarget{_cafetiere_8java_source_l00082}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aee3f9b78df63bc8dd73bf564954d51ca}{00082}     \textcolor{keyword}{private} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aee3f9b78df63bc8dd73bf564954d51ca}{preference} = null;
+\Hypertarget{_cafetiere_8java_source_l00083}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a987c8e1bcea506b65f4b05f955b3f699}{00083}     \textcolor{keyword}{private} ArrayList<Programmation> \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a987c8e1bcea506b65f4b05f955b3f699}{programmations};
+00084 
+\Hypertarget{_cafetiere_8java_source_l00085}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae9590789503a6ae2094c86cf93299821}{00085}     \textcolor{keyword}{private} ArrayList<Capsule> \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae9590789503a6ae2094c86cf93299821}{capsules};
+\Hypertarget{_cafetiere_8java_source_l00086}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aad375efbc01f1db83572f4ae567189de}{00086}     \textcolor{keyword}{private} ArrayList<Boisson> \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aad375efbc01f1db83572f4ae567189de}{boissons};
+\Hypertarget{_cafetiere_8java_source_l00087}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac8fa3d1ad76eccf431ee04b395a557a3}{00087}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac8fa3d1ad76eccf431ee04b395a557a3}{capsuleActuelle} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a5a23a636fa5f2e5826458e700f453c16}{AUCUNE\_CAPSULE};
+\Hypertarget{_cafetiere_8java_source_l00088}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a73c5fa3b510655e1e3425140336b7f5b}{00088}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a73c5fa3b510655e1e3425140336b7f5b}{boissonActuelle} = 0;
+00089 
+\Hypertarget{_cafetiere_8java_source_l00090}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae170dd018d1e740b3bda080d1cc3d900}{00090}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae170dd018d1e740b3bda080d1cc3d900}{etatCafetiere} = \textcolor{keyword}{false};
+\Hypertarget{_cafetiere_8java_source_l00091}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a93c5021591facf06397e760c11556904}{00091}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a93c5021591facf06397e760c11556904}{etatTasse} = \textcolor{keyword}{false};
+\Hypertarget{_cafetiere_8java_source_l00092}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a058f7a18cd9c0567d583b8bc6250d143}{00092}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a058f7a18cd9c0567d583b8bc6250d143}{etatBac} = \textcolor{keyword}{false};
+\Hypertarget{_cafetiere_8java_source_l00093}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aaf8e1a960f803c2de4defa414b5984a4}{00093}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aaf8e1a960f803c2de4defa414b5984a4}{niveauEau} = 0;
+00094 
+00095 
+\Hypertarget{_cafetiere_8java_source_l00096}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a123b6fcb9a9c1decae40e026660e716b}{00096}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a123b6fcb9a9c1decae40e026660e716b}{nombreCafeDuJour} = 0; 
+\Hypertarget{_cafetiere_8java_source_l00097}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a61e4ab1e5ebdc60ffea39a344711e477}{00097}     \textcolor{keyword}{private} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a61e4ab1e5ebdc60ffea39a344711e477}{date} = null;
+\Hypertarget{_cafetiere_8java_source_l00098}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac22f9da8ed59c7362871b8f22e501e23}{00098}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac22f9da8ed59c7362871b8f22e501e23}{nombreCafeTotal} = 0; 
+\Hypertarget{_cafetiere_8java_source_l00099}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6491d6d04db5d6e7da868565b84f6d7f}{00099}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6491d6d04db5d6e7da868565b84f6d7f}{nombreBacVide} = 0;
+\Hypertarget{_cafetiere_8java_source_l00100}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2332c2e33acff5084b4571663b48bd89}{00100}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2332c2e33acff5084b4571663b48bd89}{nombreEauRemplie} = 0;
+\Hypertarget{_cafetiere_8java_source_l00101}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aafc365a43172fca9166fb2a9006c6ecf}{00101}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aafc365a43172fca9166fb2a9006c6ecf}{dureteeEau} = 0;
+\Hypertarget{_cafetiere_8java_source_l00102}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a27aba2ce49934d0bf7b2d2230b3003d7}{00102}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a27aba2ce49934d0bf7b2d2230b3003d7}{qualiteeEau} = 0;
+00103 
+\Hypertarget{_cafetiere_8java_source_l00108}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a8a8b762148526c605b13daeaf9d2e7cb}{00108}     \textcolor{keyword}{public} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a8a8b762148526c605b13daeaf9d2e7cb}{Cafetiere}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm}{Ihm} ihm)
+00109     \{
+00110         Log.d(TAG, \textcolor{stringliteral}{"Cafetiere()"});
+00111         this.ihm = \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a7db4a63088834eda5f6a3e951611bf82}{ihm};
+00112         \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a20f3b74112d4e668a382882c4c8ccd07}{initialiserPreference}();
+00113         \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a75d0df422427eed8b12e7b46a6e11a35}{initialiserCapsules}();
+00114         \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae9092a9540897e60c4cf7307073a75ab}{initialiserBoissons}();
+00115         \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad7c3e155b2ddf4dae05da8cd9c38518a}{initialiserCommunication}();
+00116         \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aae065b86cdb3a8df2c904068aab7e9bf}{initaliserProgrammation}();
+00117     \}
+00118 
+\Hypertarget{_cafetiere_8java_source_l00122}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a20f3b74112d4e668a382882c4c8ccd07}{00122}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a20f3b74112d4e668a382882c4c8ccd07}{initialiserPreference}()
+00123     \{
+00124         preference = \textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}(ihm);
+00125         \textcolor{comment}{//if(preference.contient(Preference.CAPSULE))}
+00126         String donnee = preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a64416823eba6f35e817636b31cb12265}{CAPSULE}).toString();
+00127         \textcolor{keywordflow}{if}(!donnee.isEmpty())
+00128             capsuleActuelle = Integer.valueOf(donnee);
+00129         \textcolor{keywordflow}{else}
+00130             capsuleActuelle = 0; \textcolor{comment}{// première capsule}
+00131         \textcolor{comment}{//if(preference.contient(Preference.CAPSULE))}
+00132         donnee = preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a6923224bd12c5b50259e5f376ed58a35}{BOISSON}).toString();
+00133         \textcolor{keywordflow}{if}(!donnee.isEmpty())
+00134             boissonActuelle = Integer.valueOf(donnee);
+00135         \textcolor{keywordflow}{else}
+00136             boissonActuelle = 0; \textcolor{comment}{// café court}
+00137         nombreCafeDuJour = preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5a8f4c9f845924a0ebb3aec5ca99a5f5}{obtenirNombreCafeDuJour}(date, nombreCafeDuJour
+      );
+00138         Log.d(TAG, \textcolor{stringliteral}{"initialiserPreference() capsuleActuelle = "} + capsuleActuelle);
+00139         Log.d(TAG, \textcolor{stringliteral}{"initialiserPreference() boissonActuelle = "} + boissonActuelle);
+00140         Log.d(TAG, \textcolor{stringliteral}{"initialiserPreference() nombreCafeDuJour = "} + nombreCafeDuJour);
+00141     \}
+00142 
+\Hypertarget{_cafetiere_8java_source_l00143}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aae065b86cdb3a8df2c904068aab7e9bf}{00143}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aae065b86cdb3a8df2c904068aab7e9bf}{initaliserProgrammation}()
+00144     \{
+00145         Log.d(TAG, \textcolor{stringliteral}{"initaliserProgrammation()"});
+00146         programmations = \textcolor{keyword}{new} ArrayList<Programmation>();
+00147         \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a406e5771edb1663ebb1fc571365b75ac}{initialiserProgrammations}();
+00148     \}
+00149 
+\Hypertarget{_cafetiere_8java_source_l00153}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad7c3e155b2ddf4dae05da8cd9c38518a}{00153}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad7c3e155b2ddf4dae05da8cd9c38518a}{initialiserCommunication}()
+00154     \{
+00155         Log.d(TAG, \textcolor{stringliteral}{"initialiserCommunication()"});
+00156         communication = \textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication}{Communication}(ihm, \textcolor{keyword}{this});
+00157     \}
+00158 
+\Hypertarget{_cafetiere_8java_source_l00162}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a75d0df422427eed8b12e7b46a6e11a35}{00162}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a75d0df422427eed8b12e7b46a6e11a35}{initialiserCapsules}()
+00163     \{
+00164         Log.d(TAG, \textcolor{stringliteral}{"initialiserCapsules()"});
+00165         capsules = \textcolor{keyword}{new} ArrayList<>();
+00166         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a183d96e89c056c4ac9c565bf8f24851e}{NOMBRE\_CAPSULE\_MAX}; ++i)
+00167             capsules.add(\textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_capsule}{Capsule}(nomsCapusles[i], idImagesCapsules[i], presencesCapsules[i]));
+00168     \}
+00169 
+\Hypertarget{_cafetiere_8java_source_l00173}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae9092a9540897e60c4cf7307073a75ab}{00173}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae9092a9540897e60c4cf7307073a75ab}{initialiserBoissons}()
+00174     \{
+00175         Log.d(TAG, \textcolor{stringliteral}{"initialiserBoissons()"});
+00176         boissons = \textcolor{keyword}{new} ArrayList<>();
+00177         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2be5950bf3bb155b8396593d390b808b}{NOMBRE\_BOISSON\_MAX}; ++i)
+00178             boissons.add(\textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_boisson}{Boisson}(nomsBoissons[i], idImagesBoissons[i]));
+00179     \}
+00180 
+\Hypertarget{_cafetiere_8java_source_l00184}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a86149d999dc196c3d97c855be0073e99}{00184}     \textcolor{keyword}{public} ArrayList<Capsule> \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a86149d999dc196c3d97c855be0073e99}{listerCapsules}()
+00185     \{
+00186         Log.d(TAG, \textcolor{stringliteral}{"listerCapsules()"});
+00187         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae9590789503a6ae2094c86cf93299821}{capsules};
+00188     \}
+00189 
+\Hypertarget{_cafetiere_8java_source_l00193}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a508a256d85a4e78c2b5c1a45899fcd99}{00193}     \textcolor{keyword}{public} ArrayList<Boisson> \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a508a256d85a4e78c2b5c1a45899fcd99}{listerBoissons}()
+00194     \{
+00195         Log.d(TAG, \textcolor{stringliteral}{"listerBoissons()"});
+00196         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aad375efbc01f1db83572f4ae567189de}{boissons};
+00197     \}
+00198 
+\Hypertarget{_cafetiere_8java_source_l00202}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac9ff316ec5e971d52f595dc4594e7b5b}{00202}     \textcolor{keyword}{public} Integer \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac9ff316ec5e971d52f595dc4594e7b5b}{obtenirDescriptionCapsule}(\textcolor{keywordtype}{int} position)
+00203     \{
+00204         Log.d(TAG, \textcolor{stringliteral}{"obtenirDescriptionCapsule()"});
+00205         \textcolor{keywordflow}{return} descriptionCapsules[position];
+00206     \}
+00207 
+\Hypertarget{_cafetiere_8java_source_l00212}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a686b4e821ea9164323753eb123576921}{00212}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a686b4e821ea9164323753eb123576921}{changerCapsuleActuelle}(\textcolor{keywordtype}{int} capsule)
+00213     \{
+00214         Log.d(TAG, \textcolor{stringliteral}{"changerCapsuleActuelle()"});
+00215         this.capsuleActuelle = capsule;
+00216         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a64416823eba6f35e817636b31cb12265}{CAPSULE}, capsuleActuelle);
+00217         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2c3740dd5be20b3111b36649514fd41e}{actualiserIndicateurs}();
+00218     \}
+00219 
+\Hypertarget{_cafetiere_8java_source_l00224}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a50775b093a7f6d1b0fe8ad3662d80fc5}{00224}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a50775b093a7f6d1b0fe8ad3662d80fc5}{changerBoissonActuelle}(\textcolor{keywordtype}{int} boisson)
+00225     \{
+00226         Log.d(TAG, \textcolor{stringliteral}{"changerBoissonActuelle()"});
+00227         this.boissonActuelle = boisson;
+00228         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a6923224bd12c5b50259e5f376ed58a35}{BOISSON}, boissonActuelle);
+00229     \}
+00230 
+\Hypertarget{_cafetiere_8java_source_l00235}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a3251d1865f3a4113553e1743a971984d}{00235}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a3251d1865f3a4113553e1743a971984d}{informerCapsuleActuelle}()
+00236     \{
+00237         Log.d(TAG, \textcolor{stringliteral}{"informerCapsuleActuelle()"});
+00238         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac8fa3d1ad76eccf431ee04b395a557a3}{capsuleActuelle};
+00239     \}
+00240 
+\Hypertarget{_cafetiere_8java_source_l00245}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aa7022512d5a36d2b911722ae6400379f}{00245}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aa7022512d5a36d2b911722ae6400379f}{informerBoissonActuelle}()
+00246     \{
+00247         Log.d(TAG, \textcolor{stringliteral}{"informerBoissonActuelle()"});
+00248         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a73c5fa3b510655e1e3425140336b7f5b}{boissonActuelle};
+00249     \}
+00250 
+\Hypertarget{_cafetiere_8java_source_l00255}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a4253a092cf9c84f7b97021e628d5bfb4}{00255}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a4253a092cf9c84f7b97021e628d5bfb4}{informerEtatCafetiere}()
+00256     \{
+00257         Log.d(TAG, \textcolor{stringliteral}{"informerEtatCafetiere()"});
+00258         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae170dd018d1e740b3bda080d1cc3d900}{etatCafetiere};
+00259     \}
+00260 
+\Hypertarget{_cafetiere_8java_source_l00265}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aeff88ad385713a7897074dcdb76077a5}{00265}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aeff88ad385713a7897074dcdb76077a5}{informerEtatBluetooth}()
+00266     \{
+00267         Log.d(TAG, \textcolor{stringliteral}{"informerEtatBluetooth()"});
+00268         \textcolor{keywordflow}{return} communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a1007662e44cb2d0af3bef6d36246bf9a}{estActivee}();
+00269     \}
+00270 
+\Hypertarget{_cafetiere_8java_source_l00275}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a97d9ca4701a961fe8865ecfa1d5bf64a}{00275}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a97d9ca4701a961fe8865ecfa1d5bf64a}{informerConnexionBluetooth}()
+00276     \{
+00277         Log.d(TAG, \textcolor{stringliteral}{"informerConnexionBluetooth()"});
+00278         \textcolor{keywordflow}{return} communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0c591a578528edaa5bb665cede5738bc}{estConnectee}();
+00279     \}
+00280 
+\Hypertarget{_cafetiere_8java_source_l00285}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae3c04cc0258cbe554eee5894655c379e}{00285}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae3c04cc0258cbe554eee5894655c379e}{informerEtatTasse}()
+00286     \{
+00287         Log.d(TAG, \textcolor{stringliteral}{"informerEtatTasse()"});
+00288         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a93c5021591facf06397e760c11556904}{etatTasse};
+00289     \}
+00290 
+\Hypertarget{_cafetiere_8java_source_l00295}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a1e5aad72cec77a755c8b70eb1be5e6e5}{00295}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a1e5aad72cec77a755c8b70eb1be5e6e5}{informerEtatBac}()
+00296     \{
+00297         Log.d(TAG, \textcolor{stringliteral}{"informerEtatBac()"});
+00298         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a058f7a18cd9c0567d583b8bc6250d143}{etatBac};
+00299     \}
+00300 
+\Hypertarget{_cafetiere_8java_source_l00305}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ab8113e922056276f8097744991ca76b6}{00305}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ab8113e922056276f8097744991ca76b6}{informerNiveauEau}()
+00306     \{
+00307         Log.d(TAG, \textcolor{stringliteral}{"informerNiveauEau()"});
+00308         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aaf8e1a960f803c2de4defa414b5984a4}{niveauEau};
+00309     \}
+00310 
+\Hypertarget{_cafetiere_8java_source_l00316}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a35a291f849346b374f63324bc3ecd70b}{00316}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a35a291f849346b374f63324bc3ecd70b}{informerPresenceCapsule}(\textcolor{keywordtype}{int} position)
+00317     \{
+00318         Log.d(TAG, \textcolor{stringliteral}{"informerPresenceCapsule()"});
+00319         \textcolor{keywordflow}{return} capsules.get(position).obtenirPresence();
+00320     \}
+00321 
+\Hypertarget{_cafetiere_8java_source_l00326}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac93a294ca5d2dcd4cc9c54bf5c41c3e4}{00326}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac93a294ca5d2dcd4cc9c54bf5c41c3e4}{informerNombreCafeDuJour}()
+00327     \{
+00328         Log.d(TAG, \textcolor{stringliteral}{"informerNombreCafeDuJour()"});
+00329         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a123b6fcb9a9c1decae40e026660e716b}{nombreCafeDuJour};
+00330     \}
+00331 
+\Hypertarget{_cafetiere_8java_source_l00336}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aa267545b22527a434e812f8c001d1e8a}{00336}     \textcolor{keyword}{public} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aa267545b22527a434e812f8c001d1e8a}{informerNomCafetiere}()
+00337     \{
+00338         Log.d(TAG, \textcolor{stringliteral}{"informerNomCafetiere()"});
+00339         \textcolor{keywordflow}{if}(communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0c591a578528edaa5bb665cede5738bc}{estConnectee}())
+00340             \textcolor{keywordflow}{return} communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a133dd63afcf2d2f1229a416abe099494}{obtenirNomPeripherique}();
+00341         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a5b10663105c7e3fd28dfd9d51b5e925f}{NOM\_CAFETIERE\_NON\_CONNECTEE};
+00342     \}
+00343 
+\Hypertarget{_cafetiere_8java_source_l00348}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a01de1ada0bfd9d75e9c873ca1bdb62df}{00348}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a01de1ada0bfd9d75e9c873ca1bdb62df}{informerNombreCafeTotal}()
+00349     \{
+00350         Log.d(TAG, \textcolor{stringliteral}{"informerNombreCafeTotal()"});
+00351         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac22f9da8ed59c7362871b8f22e501e23}{nombreCafeTotal};
+00352     \}
+00353 
+\Hypertarget{_cafetiere_8java_source_l00358}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6c708e64b24c32926eb787c3e7b8645a}{00358}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6c708e64b24c32926eb787c3e7b8645a}{informerNombreBacVide}()
+00359     \{
+00360         Log.d(TAG, \textcolor{stringliteral}{"informerNombreBacVide()"});
+00361         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6491d6d04db5d6e7da868565b84f6d7f}{nombreBacVide};
+00362     \}
+00363 
+\Hypertarget{_cafetiere_8java_source_l00368}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a456c870bf52bcd639abdc299e50ddd73}{00368}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a456c870bf52bcd639abdc299e50ddd73}{informerNombreEauRemplie}()
+00369     \{
+00370         Log.d(TAG, \textcolor{stringliteral}{"informerNombreEauRemplie()"});
+00371         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2332c2e33acff5084b4571663b48bd89}{nombreEauRemplie};
+00372     \}
+00373 
+\Hypertarget{_cafetiere_8java_source_l00378}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a078b7b5343bfbc06dec35dbd8fb292be}{00378}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a078b7b5343bfbc06dec35dbd8fb292be}{informerDureteeEau}()
+00379     \{
+00380         Log.d(TAG, \textcolor{stringliteral}{"informerDureteeEau()"});
+00381         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aafc365a43172fca9166fb2a9006c6ecf}{dureteeEau};
+00382     \}
+00383 
+\Hypertarget{_cafetiere_8java_source_l00388}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a1c04bcbd87ed47f8abf08e36e0629e13}{00388}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a1c04bcbd87ed47f8abf08e36e0629e13}{informerQualiteeEau}()
+00389     \{
+00390         Log.d(TAG, \textcolor{stringliteral}{"informerQualiteeEau()"});
+00391         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a27aba2ce49934d0bf7b2d2230b3003d7}{qualiteeEau};
+00392     \}
+00393 
+\Hypertarget{_cafetiere_8java_source_l00397}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a76eb3aa494815ac3b43371e21de21db3}{00397}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a76eb3aa494815ac3b43371e21de21db3}{demanderPreparationCafe}()
+00398     \{
+00399         \textcolor{keywordflow}{if}(capsuleActuelle != AUCUNE\_CAPSULE)
+00400         \{
+00401             String trame = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a95497419a17cd6ba14663af6c20d7797}{fabriquerTramePreparationCafe}(
+      boissonActuelle, capsuleActuelle);
+00402             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(trame);
+00403             Log.d(TAG, \textcolor{stringliteral}{"demanderPreparationCafe() : trame "} + trame);
+00404         \}
+00405         \textcolor{keywordflow}{else}
+00406         \{
+00407             ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_ab1ca33ad18d42540299e3a58a82f4d9a}{afficherMessage}(\textcolor{stringliteral}{"Veuillez sélectionner une capsule !"});
+00408         \}
+00409     \}
+00410 
+\Hypertarget{_cafetiere_8java_source_l00414}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_afa405dc114a82fe74c06ff0971fa6cfc}{00414}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_afa405dc114a82fe74c06ff0971fa6cfc}{allumer}()
+00415     \{
+00416         Log.d(TAG,\textcolor{stringliteral}{"allumer()"});
+00417         \textcolor{keywordflow}{if}(communication != null)
+00418             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a64e0731414722f27a990d8ac884aca83}{activer}();
+00419     \}
+00420 
+\Hypertarget{_cafetiere_8java_source_l00424}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_acca6b757d8fad0d0faf64f3266557ca2}{00424}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_acca6b757d8fad0d0faf64f3266557ca2}{eteindre}()
+00425     \{
+00426         Log.d(TAG,\textcolor{stringliteral}{"eteindre()"});
+00427         \textcolor{keywordflow}{if}(communication != null)
+00428             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a230dde1900a47e26832b7467eddc556a}{desactiver}();
+00429         etatCafetiere = \textcolor{keyword}{false};
+00430         etatTasse = \textcolor{keyword}{false};
+00431         etatBac = \textcolor{keyword}{false};
+00432         niveauEau = 0;
+00433     \}
+00434 
+\Hypertarget{_cafetiere_8java_source_l00438}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a7ea38fe01cdeb8588fc34de028907a9c}{00438}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a7ea38fe01cdeb8588fc34de028907a9c}{connecter}()
+00439     \{
+00440         Log.d(TAG,\textcolor{stringliteral}{"connecter()"});
+00441         \textcolor{keywordflow}{if}(communication != null)
+00442             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_af0cb2a6a5c1674a7204174ba786e8596}{connecter}();
+00443     \}
+00444 
+\Hypertarget{_cafetiere_8java_source_l00448}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a8bf7e4352dafd60485555ee68edb9e52}{00448}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a8bf7e4352dafd60485555ee68edb9e52}{deconnecter}()
+00449     \{
+00450         Log.d(TAG,\textcolor{stringliteral}{"deconnecter()"});
+00451         \textcolor{keywordflow}{if}(communication != null)
+00452             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a024ca42abcc8727d303a54ec44b4c99b}{deconnecter}();
+00453         etatCafetiere = \textcolor{keyword}{false};
+00454         etatTasse = \textcolor{keyword}{false};
+00455         etatBac = \textcolor{keyword}{false};
+00456         niveauEau = 0;
+00457     \}
+00458 
+\Hypertarget{_cafetiere_8java_source_l00463}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aba42bba06ffbf08735d7f548bcce9f42}{00463}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aba42bba06ffbf08735d7f548bcce9f42}{changerEtats}(String trame)
+00464     \{
+00465         Log.d(TAG, \textcolor{stringliteral}{"changerEtats()"});
+00466         trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME}, \textcolor{stringliteral}{""});
+00467 
+00468         \textcolor{keywordflow}{if}(trame != null)
+00469         \{
+00470             \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a710b865b4ce664d2adda2f5d5ccd6a72}{TEST\_ALIVE}))
+00471                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a1c6b2ea0e069cda876260e18ea8f6e84}{actualiserDonnees}();
+00472             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_acb81150b5809d8635dd3301fa376a1d6}{INDICATEUR\_PREPARATION\_CAFE}))
+00473                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac2f81a08528b9f7017bfe6183fde876f}{verifierPreparationCafe}(trame);
+00474             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab35c00ac601a9f2037ba8c95d9c09983}{ACTUALISATION\_CAFETIERE}))
+00475                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6485aa7504eeb5c3c09accab52bb3ad1}{actualiserCafetiere}(trame);
+00476             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8a6313d18d5ca2b55181302f6ec96330}{ACTUALISATION\_MAGASIN}))
+00477                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a406c04398043ee4abca9902828197d91}{actualiserMagasin}(trame);
+00478             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7751357fc287fe44de89ebd3fc9cee9b}{ACTUALISATION\_COMPLEMENTAIRE}) || trame.startsWith(
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add67f8989ac6672f498b8c9f085cd445}{REINITIALISER}))
+00479                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_af968afecce6625f466b145a54e8b1d44}{actualiserInformationsComplementaires}(trame);
+00480             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8127ee50bdfb556779ad1c920c498e83}{ACTUALISATION\_PROGRAMMATION}))
+00481             \{
+00482                 \textcolor{keywordflow}{if} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac3f2b337d1fd091faa312c2c6ec08bfc}{verifierProgrammation}(trame))
+00483                     \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac79907a8b3499bb9b2f50e31f8c904e8}{lancerPreparationCafe}();
+00484             \}
+00485             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a2ca55536aa2d416dbc4bf7856c6bae3c}{CREER\_PROGRAMMATION}))
+00486                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a8664d05f55227160182de50a7c31ccf3}{creerUneProgrammation}(trame);
+00487             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad05ba92eb443c22bdcd6d7a5a6928558}{SUPPRIMER\_PROGRAMMATION}))
+00488                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a316296ae1fad708259a403c60099caa1}{verifierSuppressionDuneProgrammation}(trame);
+00489         \}
+00490     \}
+00491 
+\Hypertarget{_cafetiere_8java_source_l00495}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a1c6b2ea0e069cda876260e18ea8f6e84}{00495}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a1c6b2ea0e069cda876260e18ea8f6e84}{actualiserDonnees}()
+00496     \{
+00497         \textcolor{keywordflow}{if}(communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0c591a578528edaa5bb665cede5738bc}{estConnectee}())
+00498         \{
+00499             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a71e172b9adefa345ebff98663129f833}{fabriquerTrameActualisationCafetiere}());
+00500             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_aec8d32eecd3d497bc6c3d94c6e29450c}{fabriquerTrameActualisationMagasin}());
+00501             communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4a7fde713ecc0e7d8653f4610b58f1bf}{fabriquerTrameActualisationComplementaires}());
+00502         \}
+00503     \}
+00504 
+\Hypertarget{_cafetiere_8java_source_l00509}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac2f81a08528b9f7017bfe6183fde876f}{00509}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac2f81a08528b9f7017bfe6183fde876f}{verifierPreparationCafe}(String trame)
+00510     \{
+00511         trame = trame.replace(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_acb81150b5809d8635dd3301fa376a1d6}{INDICATEUR\_PREPARATION\_CAFE} + \textcolor{charliteral}{
+      ';'}, \textcolor{stringliteral}{""});
+00512 
+00513         \textcolor{keywordflow}{if}(trame.charAt(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4e694989f44fe628753f5e65f6c8c08e}{EMPLACEMENT\_RETOUR}) == 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae7fcfc428ba9d1815daf59fcab12da13}{RETOUR\_INVALIDE})
+00514         \{
+00515             Log.d(TAG, \textcolor{stringliteral}{"Erreur préparataion café !"});
+00516             Toast.makeText(ihm.getApplicationContext(), \textcolor{stringliteral}{"Impossible de préparer le café !"}, Toast.
+      LENGTH\_LONG).show();
+00517         \}
+00518         \textcolor{keywordflow}{else}
+00519         \{
+00520             \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac79907a8b3499bb9b2f50e31f8c904e8}{lancerPreparationCafe}();
+00521         \}
+00522     \}
+00523 
+\Hypertarget{_cafetiere_8java_source_l00527}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac79907a8b3499bb9b2f50e31f8c904e8}{00527}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac79907a8b3499bb9b2f50e31f8c904e8}{lancerPreparationCafe}()
+00528     \{
+00529         Log.d(TAG, \textcolor{stringliteral}{"lancerPreparationCafe()"});
+00530         Toast.makeText(ihm.getApplicationContext(), \textcolor{stringliteral}{"Votre café est en cours de préparation"}, Toast.
+      LENGTH\_LONG).show();
+00531         ++\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a123b6fcb9a9c1decae40e026660e716b}{nombreCafeDuJour};
+00532         ++\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac22f9da8ed59c7362871b8f22e501e23}{nombreCafeTotal};
+00533         etatCafetiere = \textcolor{keyword}{false};
+00534         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference}{Preference}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a75bf6df7d252d793f34494240571a9ee}{NB\_CAFE\_DU\_JOUR}, nombreCafeDuJour);
+00535         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2c3740dd5be20b3111b36649514fd41e}{actualiserIndicateurs}();
+00536         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2422719a8e893b23e95f80b5899adb76}{actualiserPageInformations}();
+00537     \}
+00538 
+\Hypertarget{_cafetiere_8java_source_l00543}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6485aa7504eeb5c3c09accab52bb3ad1}{00543}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6485aa7504eeb5c3c09accab52bb3ad1}{actualiserCafetiere}(String trame)
+00544     \{
+00545         Log.d(TAG, \textcolor{stringliteral}{"actualiserCafetiere()"});
+00546 
+00547         \textcolor{keywordtype}{boolean} etatCafetiere = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_abc2f21c6245695c5037bd0a2eac88799}{extraireValeurCafetiere}(trame);
+00548         \textcolor{keywordtype}{boolean} etatTasse = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae5e80461f082b4d2e469ee6841b9a380}{extraireValeurTasse}(trame);
+00549         \textcolor{keywordtype}{boolean} etatBac = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a235ca0a3c40a50f4dc75346a60e54917}{extraireValeurBac}(trame);
+00550         \textcolor{keywordtype}{int} niveauEau = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad979442926a41d39052501267b5f5be3}{extraireValeurEau}(trame);
+00551 
+00552         \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6fa4b1560875b71d339a9f6c24c5336d}{changerEtatsCafetiere}(etatCafetiere, etatTasse, etatBac, niveauEau);
+00553 
+00554         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2c3740dd5be20b3111b36649514fd41e}{actualiserIndicateurs}();
+00555     \}
+00556 
+\Hypertarget{_cafetiere_8java_source_l00561}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a406c04398043ee4abca9902828197d91}{00561}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a406c04398043ee4abca9902828197d91}{actualiserMagasin}(String trame)
+00562     \{
+00563         Log.d(TAG, \textcolor{stringliteral}{"actualiserMagasin()"});
+00564         presencesCapsules = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ab9ea349bfe2b76585f8e71677cacd867}{extraireValeursCapsules}(trame);
+00565         \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = 0; i < \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a183d96e89c056c4ac9c565bf8f24851e}{NOMBRE\_CAPSULE\_MAX}; ++i)
+00566             capsules.get(i).changerPresence(presencesCapsules[i]);
+00567         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2d7fd2fe397785acc2b9a32e65cfd52f}{actualiserSelection}();
+00568     \}
+00569 
+\Hypertarget{_cafetiere_8java_source_l00574}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_af968afecce6625f466b145a54e8b1d44}{00574}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_af968afecce6625f466b145a54e8b1d44}{actualiserInformationsComplementaires}(String trame)
+00575     \{
+00576         Log.d(TAG, \textcolor{stringliteral}{"actualiserInformationsComplementaires()"});
+00577 
+00578         \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7751357fc287fe44de89ebd3fc9cee9b}{ACTUALISATION\_COMPLEMENTAIRE}))
+00579         \{
+00580             nombreCafeTotal = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ad76b79c64aaa9abed9a1219f3f28cb9a}{extraireNombreCafeTotal}(trame);
+00581             nombreBacVide = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7cdbcbd7aa67f4b0cebb963725b0c67e}{extraireNombreBacVide}(trame);
+00582             nombreEauRemplie = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ae4aa9859ca0f359284c931e31732477f}{extraireNombreEauRemplie}(trame);
+00583             dureteeEau = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a3d092fccea3a5bf3a92810dbe90603b0}{extraireDureteEau}(trame);
+00584             qualiteeEau = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a8f7c96aaa3fad76354e1cb4665c85e57}{extraireQualiteEau}(trame);
+00585         \}
+00586         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add67f8989ac6672f498b8c9f085cd445}{REINITIALISER}))
+00587         \{
+00588             \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add9d5727209d29af21fa468e6929fe0b}{extraireVerification}(trame))
+00589             \{
+00590                 nombreCafeTotal = 0;
+00591                 nombreBacVide = 0;
+00592                 nombreEauRemplie = 0;
+00593                 dureteeEau = 0;
+00594                 qualiteeEau = 0;
+00595                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6d1bc4321c372f7639a3305cf74f10db}{supprimerLesProgrammations}();
+00596                 ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_ab1ca33ad18d42540299e3a58a82f4d9a}{afficherMessage}(\textcolor{stringliteral}{"Données réinitialisées"});
+00597             \}
+00598         \}
+00599         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2422719a8e893b23e95f80b5899adb76}{actualiserPageInformations}();
+00600     \}
+00601 
+\Hypertarget{_cafetiere_8java_source_l00606}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac3f2b337d1fd091faa312c2c6ec08bfc}{00606}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ac3f2b337d1fd091faa312c2c6ec08bfc}{verifierProgrammation}(String trame)
+00607     \{
+00608         Log.d(TAG, \textcolor{stringliteral}{"verifierProgrammation()"});
+00609         \textcolor{keywordtype}{int} ticket = \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4997ef198a7f87d76c2f68849caae8d7}{extraireTicket}(trame);
+00610         \textcolor{keywordtype}{boolean} valide = \textcolor{keyword}{false};
+00611         \textcolor{keywordflow}{for}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation} programmation:programmations)
+00612         \{
+00613             \textcolor{keywordflow}{if}(programmation.obtenirTicket() == ticket)
+00614             \{
+00615                 valide = \textcolor{keyword}{true};
+00616                 derniereSuppressionProgrammation = programmations.indexOf(programmation);
+00617                 \textcolor{keywordflow}{break};
+00618             \}
+00619         \}
+00620         \textcolor{keywordflow}{if}(valide && \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add9d5727209d29af21fa468e6929fe0b}{extraireVerification}(trame))
+00621         \{
+00622             \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a40880363bf27354c1a7cb5df139fae53}{supprimerUneProgrammation}();
+00623             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+00624         \}
+00625         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_ab1ca33ad18d42540299e3a58a82f4d9a}{afficherMessage}(\textcolor{stringliteral}{"Erreur lors du lancement de votre programmation"});
+00626         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+00627     \}
+00628 
+\Hypertarget{_cafetiere_8java_source_l00636}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6fa4b1560875b71d339a9f6c24c5336d}{00636}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6fa4b1560875b71d339a9f6c24c5336d}{changerEtatsCafetiere}(\textcolor{keywordtype}{boolean} etatCafetiere, \textcolor{keywordtype}{boolean} etatTasse, \textcolor{keywordtype}{
+      boolean} etatBac, \textcolor{keywordtype}{int} niveauEau)
+00637     \{
+00638         Log.d(TAG, \textcolor{stringliteral}{"changerEtatsCafetiere()"});
+00639         \textcolor{keywordflow}{if}(communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a1007662e44cb2d0af3bef6d36246bf9a}{estActivee}() && communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0c591a578528edaa5bb665cede5738bc}{estConnectee}())
+00640         \{
+00641             this.etatCafetiere = \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae170dd018d1e740b3bda080d1cc3d900}{etatCafetiere};
+00642             this.etatTasse = \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a93c5021591facf06397e760c11556904}{etatTasse};
+00643             this.etatBac = \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a058f7a18cd9c0567d583b8bc6250d143}{etatBac};
+00644             this.niveauEau = \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aaf8e1a960f803c2de4defa414b5984a4}{niveauEau};
+00645         \}
+00646         \textcolor{keywordflow}{else}
+00647         \{
+00648             this.etatCafetiere = \textcolor{keyword}{false};
+00649             this.etatTasse = \textcolor{keyword}{false};
+00650             this.etatBac = \textcolor{keyword}{false};
+00651             this.niveauEau = 0;
+00652         \}
+00653     \}
+00654 
+\Hypertarget{_cafetiere_8java_source_l00658}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a10a040b45cfaac52cd5c26049bf2d7b7}{00658}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a10a040b45cfaac52cd5c26049bf2d7b7}{remettreAZero}()
+00659     \{
+00660         Log.d(TAG, \textcolor{stringliteral}{"remettreAZero()"});
+00661         capsuleActuelle = \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a5a23a636fa5f2e5826458e700f453c16}{AUCUNE\_CAPSULE};
+00662         boissonActuelle = 0;
+00663         etatCafetiere = \textcolor{keyword}{false};
+00664         etatTasse = \textcolor{keyword}{false};
+00665         etatBac = \textcolor{keyword}{false};
+00666         niveauEau = 0;
+00667         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2c3740dd5be20b3111b36649514fd41e}{actualiserIndicateurs}();
+00668         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2d7fd2fe397785acc2b9a32e65cfd52f}{actualiserSelection}();
+00669     \}
+00670 
+\Hypertarget{_cafetiere_8java_source_l00674}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad8c8b7d410315f55a216de809571fd87}{00674}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad8c8b7d410315f55a216de809571fd87}{actualiserIHM}()
+00675     \{
+00676         Log.d(TAG, \textcolor{stringliteral}{"actualiserIHM()"});
+00677         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_a2c3740dd5be20b3111b36649514fd41e}{actualiserIndicateurs}();
+00678     \}
+00679 
+\Hypertarget{_cafetiere_8java_source_l00683}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a18e77fd60191cc0b2c7e247f72807096}{00683}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a18e77fd60191cc0b2c7e247f72807096}{reinitialiserInformations}()
+00684     \{
+00685         Log.d(TAG, \textcolor{stringliteral}{"reinitialiserInformations()"});
+00686         communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a7b6e2d90184a17cdf7ee63b350486b3a}{fabriquerTrameReinitialiser}());
+00687     \}
+00688 
+\Hypertarget{_cafetiere_8java_source_l00692}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a406e5771edb1663ebb1fc571365b75ac}{00692}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a406e5771edb1663ebb1fc571365b75ac}{initialiserProgrammations}()
+00693     \{
+00694         Log.d(TAG, \textcolor{stringliteral}{"initialiserProgrammations()"});
+00695         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a056f8e2549c22393882b7306223a64c2}{MAX\_PROGRAMMATION}; ++i)
+00696         \{
+00697             String idNouvelleProgrammation = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + i;
+00698             \textcolor{keywordflow}{if}(preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(idNouvelleProgrammation))
+00699             \{
+00700                 programmations.add(\textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}(
+00701                         (\textcolor{keywordtype}{int}) preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a44b5687d27784aed685c77cf79d419fd}{CAPSULE}),
+00702                         (int) preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a87e9e78f01480283f2d4fa9f14443034}{BOISSON}),
+00703                         (int) preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6ec3fe1846e45e6c0794eebdffeaf54b}{JOUR}),
+00704                         (String) preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aafa433ee13f4473d27cd7db34bbc4584}{HEURE}),
+00705                         (int) preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa5b1e7bbc58f4fef972e733498781a8e}{FREQUENCE}),
+00706                         (int) preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a485d7fe31708aa1b85c0e2dcdcc05c0d}{obtenir}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa04b411478bfe88f8f53057dfca5c650}{TICKET})
+00707                 ));
+00708             \}
+00709         \}
+00710     \}
+00711 
+\Hypertarget{_cafetiere_8java_source_l00720}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2657310905f93ef4fba5b5f1dad81be9}{00720}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a2657310905f93ef4fba5b5f1dad81be9}{demanderCreationUneProgrammation}(\textcolor{keywordtype}{int} capsule, \textcolor{keywordtype}{int} boisson, \textcolor{keywordtype}{
+      int} jour, String heure, \textcolor{keywordtype}{int} frequence)
+00721     \{
+00722         Log.d(TAG, \textcolor{stringliteral}{"demanderCreationUneProgrammation()"});
+00723         communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_ac967186423a451ede7e4b9bc16a96222}{fabriquerTrameCreerProgrammation}(capsule, boisson, jour, heure, frequence))
+      ;
+00724         derniereProgrammation = \textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}(capsule, boisson, jour, heure, frequence);
+00725     \}
+00726 
+\Hypertarget{_cafetiere_8java_source_l00731}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a8664d05f55227160182de50a7c31ccf3}{00731}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a8664d05f55227160182de50a7c31ccf3}{creerUneProgrammation}(String trame)
+00732     \{
+00733         Log.d(TAG, \textcolor{stringliteral}{"creerUneProgrammation()"});
+00734         \textcolor{keywordtype}{int} i = 0;
+00735         \textcolor{keywordflow}{while}(preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a25b7a4cfcc9fe5f9258471ce454a718a}{contient}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + i))
+00736         \{
+00737             ++i;
+00738         \}
+00739 
+00740         \textcolor{keywordflow}{if}(i >= \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a056f8e2549c22393882b7306223a64c2}{MAX\_PROGRAMMATION})
+00741         \{
+00742             ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_ab1ca33ad18d42540299e3a58a82f4d9a}{afficherMessage}(\textcolor{stringliteral}{"Désolé, vous ne pouvez faire que 4 programmations !"});
+00743             \textcolor{keywordflow}{return};
+00744         \}
+00745 
+00746         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4997ef198a7f87d76c2f68849caae8d7}{extraireTicket}(trame) == \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a18dec2fc4aa359cbcb7a7fe04ea5614a}{ERREUR\_TICKET})
+00747         \{
+00748             ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_ab1ca33ad18d42540299e3a58a82f4d9a}{afficherMessage}(\textcolor{stringliteral}{"Erreur lors de la création de la programmation !"});
+00749             \textcolor{keywordflow}{return};
+00750         \}
+00751         derniereProgrammation.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_afb82bed29c60248fe8d966af8d6da897}{changerTicket}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a4997ef198a7f87d76c2f68849caae8d7}{extraireTicket}(trame));
+00752         programmations.add(derniereProgrammation);
+00753 
+00754         String idNouvelleProgrammation = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + i;
+00755         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation, i);
+00756         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a44b5687d27784aed685c77cf79d419fd}{CAPSULE}, derniereProgrammation.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a48d39b49a1250bbfaf51e4c32e934da0}{obtenirCapsule}());
+00757         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a87e9e78f01480283f2d4fa9f14443034}{BOISSON}, derniereProgrammation.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a325b9fb3bb7e041e783ecc0ed8234c20}{obtenirBoisson}());
+00758         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6ec3fe1846e45e6c0794eebdffeaf54b}{JOUR}, derniereProgrammation.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a0e5090c0968474d6887518b7ef659337}{obtenirJour}());
+00759         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aafa433ee13f4473d27cd7db34bbc4584}{HEURE}, derniereProgrammation.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ad8930be27ca5d1eed33c5e6729735897}{obtenirHeure}());
+00760         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa5b1e7bbc58f4fef972e733498781a8e}{FREQUENCE}, derniereProgrammation.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa23acaed287ef27f86aec2771714a15f}{obtenirFrequence}());
+00761         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa04b411478bfe88f8f53057dfca5c650}{TICKET}, derniereProgrammation.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a63e8701af99c5bd974e028ba53209887}{obtenirTicket}());
+00762 
+00763         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_adbeeac61b5a53c52d21da490659de983}{actualiserPageProgrammer}();
+00764     \}
+00765 
+\Hypertarget{_cafetiere_8java_source_l00775}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae15274dce04b0f875727b29e573fc83f}{00775}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ae15274dce04b0f875727b29e573fc83f}{modifierUneProgrammation}(\textcolor{keywordtype}{int} position, \textcolor{keywordtype}{int} capsule, \textcolor{keywordtype}{int} boisson, \textcolor{keywordtype}{
+      int} jour, String heure, \textcolor{keywordtype}{int} frequence)
+00776     \{
+00777         Log.d(TAG, \textcolor{stringliteral}{"modifierUneProgrammation()"});
+00778         programmations.set(position, \textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}(capsule, boisson, jour, heure, 
+      frequence));
+00779         String idNouvelleProgrammation = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + position;
+00780         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation, position);
+00781         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a44b5687d27784aed685c77cf79d419fd}{CAPSULE}, capsule);
+00782         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a87e9e78f01480283f2d4fa9f14443034}{BOISSON}, boisson);
+00783         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_a6ec3fe1846e45e6c0794eebdffeaf54b}{JOUR}, jour);
+00784         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aafa433ee13f4473d27cd7db34bbc4584}{HEURE}, heure);
+00785         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a5af7a0595acfd41f1bd0b34ca0bfcb2a}{editer}(idNouvelleProgrammation + \textcolor{stringliteral}{"\_"} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_aa5b1e7bbc58f4fef972e733498781a8e}{FREQUENCE}, frequence);
+00786         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_adbeeac61b5a53c52d21da490659de983}{actualiserPageProgrammer}();
+00787     \}
+00788 
+\Hypertarget{_cafetiere_8java_source_l00793}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a0af9bf8f80c745c7919ea3efdc2183d0}{00793}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a0af9bf8f80c745c7919ea3efdc2183d0}{demanderSuppressionUneProgrammation}(\textcolor{keywordtype}{int} position)
+00794     \{
+00795         Log.d(TAG, \textcolor{stringliteral}{"demanderSuppressionUneProgrammation()"});
+00796         communication.\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_afa3ca73b737062d6048c1a6cc9c8c79d}{fabriquerTrameSupprimerProgrammation}(programmations.get(position).
+      obtenirTicket()));
+00797         derniereSuppressionProgrammation = position;
+00798     \}
+00799 
+\Hypertarget{_cafetiere_8java_source_l00804}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a316296ae1fad708259a403c60099caa1}{00804}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a316296ae1fad708259a403c60099caa1}{verifierSuppressionDuneProgrammation}(String trame)
+00805     \{
+00806         Log.d(TAG, \textcolor{stringliteral}{"verifierSuppressionDuneProgrammation()"});
+00807         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_add9d5727209d29af21fa468e6929fe0b}{extraireVerification}(trame))
+00808         \{
+00809             \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a40880363bf27354c1a7cb5df139fae53}{supprimerUneProgrammation}();
+00810         \}
+00811         \textcolor{keywordflow}{else}
+00812         \{
+00813             ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_ab1ca33ad18d42540299e3a58a82f4d9a}{afficherMessage}(\textcolor{stringliteral}{"Erreur lors de la suppression de votre programmation"});
+00814         \}
+00815     \}
+00816 
+\Hypertarget{_cafetiere_8java_source_l00820}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a40880363bf27354c1a7cb5df139fae53}{00820}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a40880363bf27354c1a7cb5df139fae53}{supprimerUneProgrammation}()
+00821     \{
+00822         Log.d(TAG, \textcolor{stringliteral}{"supprimerUneProgrammation()"});
+00823         String idProgrammation = \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation_ae0552520e4ca9dc152bb503a7a00bf3a}{ID} + 
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a79faede6506425563ec617affef48e09}{derniereSuppressionProgrammation};
+00824         programmations.remove(derniereSuppressionProgrammation);
+00825         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a63914421a8e7b8f79822853e3aff3106}{supprimer}(idProgrammation);
+00826         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_a98ab818534d930d51fa09de962780fe3}{reorganiserLesProgrammations}(
+      derniereSuppressionProgrammation);
+00827         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_ab1ca33ad18d42540299e3a58a82f4d9a}{afficherMessage}(\textcolor{stringliteral}{"Vous avez supprimé une programmation !"});
+00828         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_adbeeac61b5a53c52d21da490659de983}{actualiserPageProgrammer}();
+00829     \}
+00830 
+\Hypertarget{_cafetiere_8java_source_l00834}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6d1bc4321c372f7639a3305cf74f10db}{00834}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a6d1bc4321c372f7639a3305cf74f10db}{supprimerLesProgrammations}()
+00835     \{
+00836         Log.d(TAG, \textcolor{stringliteral}{"supprimerLesProgrammations()"});
+00837         programmations = \textcolor{keyword}{new} ArrayList<>();
+00838         preference.\hyperlink{classcom_1_1example_1_1ekawa_1_1_preference_aec0e98bb3cfb4d104c5c86a4259c56b5}{supprimerLesProgrammations}();
+00839         ihm.\hyperlink{classcom_1_1example_1_1ekawa_1_1_ihm_adbeeac61b5a53c52d21da490659de983}{actualiserPageProgrammer}();
+00840     \}
+00841 
+\Hypertarget{_cafetiere_8java_source_l00846}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_af82120eee3f2f7dbb28f74e663bfe15a}{00846}     \textcolor{keyword}{public} ArrayList<Programmation> \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_af82120eee3f2f7dbb28f74e663bfe15a}{listerProgrammations}()
+00847     \{
+00848         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a987c8e1bcea506b65f4b05f955b3f699}{programmations};
+00849     \}
+00850 
+\Hypertarget{_cafetiere_8java_source_l00856}\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aaaaa95b5ed36da9d14f5aa60116a66b8}{00856}     \textcolor{keyword}{public} \hyperlink{classcom_1_1example_1_1ekawa_1_1_programmation}{Programmation} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aaaaa95b5ed36da9d14f5aa60116a66b8}{obtenirProgrammation}(\textcolor{keywordtype}{int} position)
+00857     \{
+00858         \textcolor{keywordflow}{return} programmations.get(position);
+00859     \}
+00860 \}
+\end{DoxyCode}

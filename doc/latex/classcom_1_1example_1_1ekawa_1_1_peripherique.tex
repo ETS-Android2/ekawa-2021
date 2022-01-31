@@ -1,0 +1,578 @@
+\hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique}{}\subsection{Référence de la classe com.\+example.\+ekawa.\+Peripherique}
+\label{classcom_1_1example_1_1ekawa_1_1_peripherique}\index{com.\+example.\+ekawa.\+Peripherique@{com.\+example.\+ekawa.\+Peripherique}}
+
+
+Permet le dialogue avec le périphérique Bluetooth de la cafetière.  
+
+
+
+
+Graphe de collaboration de com.\+example.\+ekawa.\+Peripherique\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{classcom_1_1example_1_1ekawa_1_1_peripherique__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_aeec8c1b360496726a5aecd6c129de81b}{connecter} ()
+\begin{DoxyCompactList}\small\item\em Méthode qui permet de connecter le bluetooth à la cafetière. \end{DoxyCompactList}\item 
+void \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_aadfd24f4d783a7834c044041c7c035bb}{deconnecter} ()
+\begin{DoxyCompactList}\small\item\em Méthode qui permet de deconnecter le bluetooth de la cafetière. \end{DoxyCompactList}\item 
+boolean \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ac1361bc1a445b00c4c7ebb56dfee274d}{envoyer} (String trame)
+\begin{DoxyCompactList}\small\item\em Méthode qui permet d\textquotesingle{}envoyer des trames à la cafetière. \end{DoxyCompactList}\item 
+boolean \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a963c20e3fba4ed926e9dee972e3b6b39}{est\+Connecte} ()
+\item 
+Input\+Stream \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a8b88d0a0d9e0c1b1aae04ba7c9d24619}{obtenir\+Flux\+Reception} ()
+\item 
+String \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenir\+Nom} ()
+\item 
+\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_af952f48e767069b44804a96119bf3c75}{Peripherique} (Bluetooth\+Device \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique}, Handler \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler})
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}. \end{DoxyCompactList}\item 
+void \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a2cfa1b391efb3f2e7a78e761e965e7e3}{set\+Handler} (Handler \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler})
+\end{DoxyCompactItemize}
+\subsubsection*{Attributs publics statiques}
+\begin{DoxyCompactItemize}
+\item 
+static final int \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_addb8ee767dc82567360551db1004463e}{C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON} = 0
+\item 
+static final int \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a99f0e30a113d64b30598c6305657dcee}{C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON} = 2
+\item 
+static final int \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a532f5da1747b68217b8764db9b85e845}{C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON} = 1
+\end{DoxyCompactItemize}
+\subsubsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+String \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a2617309b5112a289fcd9f9570154341c}{adresse}
+\item 
+Handler \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler}
+\item 
+String \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0fb529bb80d55dd616821bce74a2af8c}{nom}
+\item 
+Bluetooth\+Device \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique} = null
+\item 
+Input\+Stream \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_af46a939491178c90c1ecd75dd781f4b6}{receive\+Stream} = null
+\item 
+\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception}{Reception} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}{reception} = null
+\item 
+Output\+Stream \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a9bacd88ef2a26eedac31fda999734639}{send\+Stream} = null
+\item 
+Bluetooth\+Socket \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} = null
+\end{DoxyCompactItemize}
+\subsubsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+static final String \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{T\+AG} = \char`\"{}Peripherique\char`\"{}
+\begin{DoxyCompactList}\small\item\em T\+AG pour les logs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Description détaillée}
+Permet le dialogue avec le périphérique Bluetooth de la cafetière. 
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00029}{29} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+\subsubsection{Documentation des constructeurs et destructeur}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_af952f48e767069b44804a96119bf3c75}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_af952f48e767069b44804a96119bf3c75}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!Peripherique@{Peripherique}}
+\index{Peripherique@{Peripherique}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{Peripherique()}{Peripherique()}}
+{\footnotesize\ttfamily com.\+example.\+ekawa.\+Peripherique.\+Peripherique (\begin{DoxyParamCaption}\item[{Bluetooth\+Device}]{peripherique,  }\item[{Handler}]{handler }\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}. 
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00052}{52} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Références \hyperlink{_peripherique_8java_source_l00047}{com.\+example.\+ekawa.\+Peripherique.\+handler}, \hyperlink{_peripherique_8java_source_l00244}{com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Nom()}, et \hyperlink{_peripherique_8java_source_l00039}{com.\+example.\+ekawa.\+Peripherique.\+peripherique}.
+
+
+\begin{DoxyCode}
+00053     \{
+00054         Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG},\textcolor{stringliteral}{"Peripherique()"});
+00055         \textcolor{keywordflow}{if} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique} != null)
+00056         \{
+00057             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique};
+00058             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0fb529bb80d55dd616821bce74a2af8c}{nom} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique}.getName();
+00059             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a2617309b5112a289fcd9f9570154341c}{adresse} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique}.getAddress();
+00060             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler};
+00061 
+00062             \textcolor{keywordflow}{try}
+00063             \{
+00064                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique}.createRfcommSocketToServiceRecord(UUID.fromString(\textcolor{stringliteral}{"
+      00001101-0000-1000-8000-00805F9B34FB"}));
+00065                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_af46a939491178c90c1ecd75dd781f4b6}{receiveStream} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.getInputStream();
+00066                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a9bacd88ef2a26eedac31fda999734639}{sendStream} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.getOutputStream();
+00067             \}
+00068             \textcolor{keywordflow}{catch}(IOException e)
+00069             \{
+00070                 e.printStackTrace();
+00071                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} = null;
+00072                 Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG},\textcolor{stringliteral}{"Erreur création socket !"});
+00073             \}
+00074         \}
+00075         \textcolor{keywordflow}{else}
+00076         \{
+00077             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique};
+00078             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0fb529bb80d55dd616821bce74a2af8c}{nom} = \textcolor{stringliteral}{"Aucun"};
+00079             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a2617309b5112a289fcd9f9570154341c}{adresse} = \textcolor{stringliteral}{""};
+00080             this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler} = null;
+00081         \}
+00082 
+00083         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} != null)
+00084         \{
+00085             \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}{reception} = \textcolor{keyword}{new} Reception(\textcolor{keyword}{this}, \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler});
+00086             Log.v(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG}, \textcolor{stringliteral}{"Périphérique "} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenirNom}() + \textcolor{stringliteral}{" prêt"});
+00087         \}
+00088     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_aeec8c1b360496726a5aecd6c129de81b}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_aeec8c1b360496726a5aecd6c129de81b}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!connecter@{connecter}}
+\index{connecter@{connecter}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{connecter()}{connecter()}}
+{\footnotesize\ttfamily void com.\+example.\+ekawa.\+Peripherique.\+connecter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Méthode qui permet de connecter le bluetooth à la cafetière. 
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00101}{101} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Références \hyperlink{_peripherique_8java_source_l00033}{com.\+example.\+ekawa.\+Peripherique.\+C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON}, et \hyperlink{_peripherique_8java_source_l00244}{com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Nom()}.
+
+
+
+Référencé par \hyperlink{_communication_8java_source_l00276}{com.\+example.\+ekawa.\+Communication.\+chercher\+Cafetiere()}, et \hyperlink{_communication_8java_source_l00078}{com.\+example.\+ekawa.\+Communication.\+detection\+Changement\+Etat\+Bluetooth()}.
+
+
+\begin{DoxyCode}
+00102     \{
+00103         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique} == null)
+00104             \textcolor{keywordflow}{return};
+00105 
+00106         \textcolor{keyword}{new} \hyperlink{class_thread}{Thread}()
+00107         \{
+00108             @Override \textcolor{keyword}{public} \textcolor{keywordtype}{void} run()
+00109             \{
+00110                 \textcolor{keywordflow}{try}
+00111                 \{
+00112                     \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} != null)
+00113                     \{
+00114                         \textcolor{keywordflow}{if}(!\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.isConnected())
+00115                         \{
+00116                             Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG}, \textcolor{stringliteral}{"Socket connexion à "} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenirNom}());
+00117                             \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.connect();
+00118                         \}
+00119 
+00120                         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.isConnected())
+00121                         \{
+00122                             Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG}, \textcolor{stringliteral}{"Socket connecté à "} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenirNom}());
+00123                             \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler} != null)
+00124                             \{
+00125                                 Message msg = Message.obtain();
+00126                                 msg.what = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_addb8ee767dc82567360551db1004463e}{CODE\_CONNEXION};
+00127                                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler}.sendMessage(msg);
+00128                             \}
+00129                         \}
+00130 
+00131                         \textcolor{keywordflow}{if} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}{reception} != null)
+00132                         \{
+00133                             \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}{reception}.start();
+00134                             Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG}, \textcolor{stringliteral}{"Démarrage thread réception"});
+00135                         \}
+00136                     \}
+00137                 \}
+00138                 \textcolor{keywordflow}{catch} (IOException e)
+00139                 \{
+00140                     Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG},\textcolor{stringliteral}{"Erreur connexion socket !"});
+00141                     e.printStackTrace();
+00142                 \}
+00143             \}
+00144         \}.start();
+00145     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_aadfd24f4d783a7834c044041c7c035bb}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_aadfd24f4d783a7834c044041c7c035bb}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!deconnecter@{deconnecter}}
+\index{deconnecter@{deconnecter}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{deconnecter()}{deconnecter()}}
+{\footnotesize\ttfamily void com.\+example.\+ekawa.\+Peripherique.\+deconnecter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Méthode qui permet de deconnecter le bluetooth de la cafetière. 
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00150}{150} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Références \hyperlink{_reception_8java_source_l00088}{com.\+example.\+ekawa.\+Reception.\+arreter()}, \hyperlink{_peripherique_8java_source_l00035}{com.\+example.\+ekawa.\+Peripherique.\+C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON}, et \hyperlink{_peripherique_8java_source_l00244}{com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Nom()}.
+
+
+
+Référencé par \hyperlink{_communication_8java_source_l00250}{com.\+example.\+ekawa.\+Communication.\+deconnecter()}.
+
+
+\begin{DoxyCode}
+00151     \{
+00152         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}{peripherique} == null)
+00153             \textcolor{keywordflow}{return};
+00154 
+00155         \textcolor{keyword}{new} \hyperlink{class_thread}{Thread}()
+00156         \{
+00157             @Override \textcolor{keyword}{public} \textcolor{keywordtype}{void} run()
+00158             \{
+00159             \textcolor{keywordflow}{try}
+00160             \{
+00161                 \textcolor{keywordflow}{if} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}{reception} != null)
+00162                 \{
+00163                     Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG},\textcolor{stringliteral}{"Arrêt thread réception"});
+00164                     \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}{reception}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_reception_a844c65410aaeee936f6b0d44f9df56db}{arreter}();
+00165                     \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_af46a939491178c90c1ecd75dd781f4b6}{receiveStream}.close();
+00166                     \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a9bacd88ef2a26eedac31fda999734639}{sendStream}.close();
+00167                     \textcolor{keywordflow}{if} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} != null)
+00168                     \{
+00169                         Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG}, \textcolor{stringliteral}{"Socket déconnexion de "} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenirNom}());
+00170                         \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.close();
+00171 
+00172                         \textcolor{keywordflow}{if} (!\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.isConnected())
+00173                         \{
+00174                             Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG}, \textcolor{stringliteral}{"Socket déconnecté de "} + \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenirNom}());
+00175                             \textcolor{keywordflow}{if} (\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler} != null)
+00176                             \{
+00177                                 Message msg = Message.obtain();
+00178                                 msg.what = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a99f0e30a113d64b30598c6305657dcee}{CODE\_DECONNEXION};
+00179                                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler}.sendMessage(msg);
+00180                             \}
+00181                         \}
+00182                     \}
+00183                 \}
+00184             \}
+00185             \textcolor{keywordflow}{catch} (IOException e)
+00186             \{
+00187                 Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG},\textcolor{stringliteral}{"Erreur fermeture socket !"});
+00188                 e.printStackTrace();
+00189             \}
+00190             \}
+00191         \}.start();
+00192     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_ac1361bc1a445b00c4c7ebb56dfee274d}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_ac1361bc1a445b00c4c7ebb56dfee274d}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!envoyer@{envoyer}}
+\index{envoyer@{envoyer}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{envoyer()}{envoyer()}}
+{\footnotesize\ttfamily boolean com.\+example.\+ekawa.\+Peripherique.\+envoyer (\begin{DoxyParamCaption}\item[{String}]{trame }\end{DoxyParamCaption})}
+
+
+
+Méthode qui permet d\textquotesingle{}envoyer des trames à la cafetière. 
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00197}{197} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_communication_8java_source_l00309}{com.\+example.\+ekawa.\+Communication.\+envoyer\+Trame()}.
+
+
+\begin{DoxyCode}
+00198     \{
+00199         \textcolor{keyword}{final} String trameEnvoyee = trame;
+00200 
+00201         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} == null)
+00202             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+00203 
+00204         \textcolor{keywordflow}{if}(!\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.isConnected())
+00205             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+00206 
+00207         \textcolor{keyword}{new} \hyperlink{class_thread}{Thread}()
+00208         \{
+00209             @Override \textcolor{keyword}{public} \textcolor{keywordtype}{void} run()
+00210             \{
+00211                 \textcolor{keywordflow}{try}
+00212                 \{
+00213                     \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.isConnected())
+00214                     \{
+00215                         \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a9bacd88ef2a26eedac31fda999734639}{sendStream}.write(trameEnvoyee.getBytes());
+00216                         \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a9bacd88ef2a26eedac31fda999734639}{sendStream}.flush();
+00217                         Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG}, \textcolor{stringliteral}{"envoyer() : "} + trameEnvoyee);
+00218                     \}
+00219                 \}
+00220                 \textcolor{keywordflow}{catch} (IOException e)
+00221                 \{
+00222                     Log.d(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}{TAG},\textcolor{stringliteral}{"Erreur écriture socket !"});
+00223                     e.printStackTrace();
+00224                 \}
+00225             \}
+00226         \}.start();
+00227 
+00228         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+00229     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a963c20e3fba4ed926e9dee972e3b6b39}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a963c20e3fba4ed926e9dee972e3b6b39}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!est\+Connecte@{est\+Connecte}}
+\index{est\+Connecte@{est\+Connecte}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{est\+Connecte()}{estConnecte()}}
+{\footnotesize\ttfamily boolean com.\+example.\+ekawa.\+Peripherique.\+est\+Connecte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00234}{234} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_communication_8java_source_l00276}{com.\+example.\+ekawa.\+Communication.\+chercher\+Cafetiere()}, et \hyperlink{_communication_8java_source_l00078}{com.\+example.\+ekawa.\+Communication.\+detection\+Changement\+Etat\+Bluetooth()}.
+
+
+\begin{DoxyCode}
+00235     \{
+00236         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket} != null)
+00237             \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}{socket}.isConnected();
+00238         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+00239     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a8b88d0a0d9e0c1b1aae04ba7c9d24619}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a8b88d0a0d9e0c1b1aae04ba7c9d24619}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!obtenir\+Flux\+Reception@{obtenir\+Flux\+Reception}}
+\index{obtenir\+Flux\+Reception@{obtenir\+Flux\+Reception}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{obtenir\+Flux\+Reception()}{obtenirFluxReception()}}
+{\footnotesize\ttfamily Input\+Stream com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Flux\+Reception (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00252}{252} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Références \hyperlink{_peripherique_8java_source_l00042}{com.\+example.\+ekawa.\+Peripherique.\+receive\+Stream}.
+
+
+
+Référencé par \hyperlink{_reception_8java_source_l00043}{com.\+example.\+ekawa.\+Reception.\+run()}.
+
+
+\begin{DoxyCode}
+00253     \{
+00254         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_af46a939491178c90c1ecd75dd781f4b6}{receiveStream};
+00255     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!obtenir\+Nom@{obtenir\+Nom}}
+\index{obtenir\+Nom@{obtenir\+Nom}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{obtenir\+Nom()}{obtenirNom()}}
+{\footnotesize\ttfamily String com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Nom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00244}{244} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Références \hyperlink{_peripherique_8java_source_l00037}{com.\+example.\+ekawa.\+Peripherique.\+nom}.
+
+
+
+Référencé par \hyperlink{_communication_8java_source_l00276}{com.\+example.\+ekawa.\+Communication.\+chercher\+Cafetiere()}, \hyperlink{_peripherique_8java_source_l00101}{com.\+example.\+ekawa.\+Peripherique.\+connecter()}, \hyperlink{_peripherique_8java_source_l00150}{com.\+example.\+ekawa.\+Peripherique.\+deconnecter()}, \hyperlink{_communication_8java_source_l00379}{com.\+example.\+ekawa.\+Communication.\+obtenir\+Nom\+Peripherique()}, et \hyperlink{_peripherique_8java_source_l00052}{com.\+example.\+ekawa.\+Peripherique.\+Peripherique()}.
+
+
+\begin{DoxyCode}
+00245     \{
+00246         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a0fb529bb80d55dd616821bce74a2af8c}{nom};
+00247     \}
+\end{DoxyCode}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a2cfa1b391efb3f2e7a78e761e965e7e3}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a2cfa1b391efb3f2e7a78e761e965e7e3}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!set\+Handler@{set\+Handler}}
+\index{set\+Handler@{set\+Handler}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{set\+Handler()}{setHandler()}}
+{\footnotesize\ttfamily void com.\+example.\+ekawa.\+Peripherique.\+set\+Handler (\begin{DoxyParamCaption}\item[{Handler}]{handler }\end{DoxyParamCaption})}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00093}{93} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Références \hyperlink{_peripherique_8java_source_l00047}{com.\+example.\+ekawa.\+Peripherique.\+handler}.
+
+
+\begin{DoxyCode}
+00094     \{
+00095         this.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler} = \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}{handler};
+00096     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentation des données membres}
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a2617309b5112a289fcd9f9570154341c}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a2617309b5112a289fcd9f9570154341c}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!adresse@{adresse}}
+\index{adresse@{adresse}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{adresse}{adresse}}
+{\footnotesize\ttfamily String com.\+example.\+ekawa.\+Peripherique.\+adresse\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00038}{38} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_addb8ee767dc82567360551db1004463e}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_addb8ee767dc82567360551db1004463e}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON@{C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON}}
+\index{C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON@{C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON}{CODE\_CONNEXION}}
+{\footnotesize\ttfamily final int com.\+example.\+ekawa.\+Peripherique.\+C\+O\+D\+E\+\_\+\+C\+O\+N\+N\+E\+X\+I\+ON = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00033}{33} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_peripherique_8java_source_l00101}{com.\+example.\+ekawa.\+Peripherique.\+connecter()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a99f0e30a113d64b30598c6305657dcee}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a99f0e30a113d64b30598c6305657dcee}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON@{C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON}}
+\index{C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON@{C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON}{CODE\_DECONNEXION}}
+{\footnotesize\ttfamily final int com.\+example.\+ekawa.\+Peripherique.\+C\+O\+D\+E\+\_\+\+D\+E\+C\+O\+N\+N\+E\+X\+I\+ON = 2\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00035}{35} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_peripherique_8java_source_l00150}{com.\+example.\+ekawa.\+Peripherique.\+deconnecter()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a532f5da1747b68217b8764db9b85e845}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a532f5da1747b68217b8764db9b85e845}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON@{C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON}}
+\index{C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON@{C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON}{CODE\_RECEPTION}}
+{\footnotesize\ttfamily final int com.\+example.\+ekawa.\+Peripherique.\+C\+O\+D\+E\+\_\+\+R\+E\+C\+E\+P\+T\+I\+ON = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00034}{34} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_reception_8java_source_l00043}{com.\+example.\+ekawa.\+Reception.\+run()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_ab6a0c0cae2eb087315d0d04d1cf6c3dc}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!handler@{handler}}
+\index{handler@{handler}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{handler}{handler}}
+{\footnotesize\ttfamily Handler com.\+example.\+ekawa.\+Peripherique.\+handler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00047}{47} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_peripherique_8java_source_l00052}{com.\+example.\+ekawa.\+Peripherique.\+Peripherique()}, et \hyperlink{_peripherique_8java_source_l00093}{com.\+example.\+ekawa.\+Peripherique.\+set\+Handler()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a0fb529bb80d55dd616821bce74a2af8c}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a0fb529bb80d55dd616821bce74a2af8c}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!nom@{nom}}
+\index{nom@{nom}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{nom}{nom}}
+{\footnotesize\ttfamily String com.\+example.\+ekawa.\+Peripherique.\+nom\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00037}{37} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_peripherique_8java_source_l00244}{com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Nom()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_ab509bd2180c53845197423813a97f025}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!peripherique@{peripherique}}
+\index{peripherique@{peripherique}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{peripherique}{peripherique}}
+{\footnotesize\ttfamily Bluetooth\+Device com.\+example.\+ekawa.\+Peripherique.\+peripherique = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00039}{39} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_peripherique_8java_source_l00052}{com.\+example.\+ekawa.\+Peripherique.\+Peripherique()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_af46a939491178c90c1ecd75dd781f4b6}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_af46a939491178c90c1ecd75dd781f4b6}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!receive\+Stream@{receive\+Stream}}
+\index{receive\+Stream@{receive\+Stream}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{receive\+Stream}{receiveStream}}
+{\footnotesize\ttfamily Input\+Stream com.\+example.\+ekawa.\+Peripherique.\+receive\+Stream = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00042}{42} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+Référencé par \hyperlink{_peripherique_8java_source_l00252}{com.\+example.\+ekawa.\+Peripherique.\+obtenir\+Flux\+Reception()}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a0192ad260e727ed46efa968a79364338}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!reception@{reception}}
+\index{reception@{reception}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{reception}{reception}}
+{\footnotesize\ttfamily \hyperlink{classcom_1_1example_1_1ekawa_1_1_reception}{Reception} com.\+example.\+ekawa.\+Peripherique.\+reception = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00045}{45} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a9bacd88ef2a26eedac31fda999734639}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a9bacd88ef2a26eedac31fda999734639}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!send\+Stream@{send\+Stream}}
+\index{send\+Stream@{send\+Stream}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{send\+Stream}{sendStream}}
+{\footnotesize\ttfamily Output\+Stream com.\+example.\+ekawa.\+Peripherique.\+send\+Stream = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00043}{43} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a00e15bc5bdafff61d45d4e39d7dd21e0}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!socket@{socket}}
+\index{socket@{socket}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{socket}{socket}}
+{\footnotesize\ttfamily Bluetooth\+Socket com.\+example.\+ekawa.\+Peripherique.\+socket = null\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00041}{41} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+\mbox{\Hypertarget{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}\label{classcom_1_1example_1_1ekawa_1_1_peripherique_a80ad0e52c530c7dc114109ff777ae975}} 
+\index{com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}!T\+AG@{T\+AG}}
+\index{T\+AG@{T\+AG}!com\+::example\+::ekawa\+::\+Peripherique@{com\+::example\+::ekawa\+::\+Peripherique}}
+\paragraph{\texorpdfstring{T\+AG}{TAG}}
+{\footnotesize\ttfamily final String com.\+example.\+ekawa.\+Peripherique.\+T\+AG = \char`\"{}Peripherique\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+T\+AG pour les logs. 
+
+
+
+Définition à la ligne \hyperlink{_peripherique_8java_source_l00031}{31} du fichier \hyperlink{_peripherique_8java_source}{Peripherique.\+java}.
+
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_peripherique_8java}{Peripherique.\+java}\end{DoxyCompactItemize}

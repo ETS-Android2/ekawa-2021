@@ -1,0 +1,331 @@
+\hypertarget{_communication_8java_source}{}\subsection{Communication.\+java}
+\label{_communication_8java_source}\index{Communication.\+java@{Communication.\+java}}
+
+\begin{DoxyCode}
+00001 \textcolor{keyword}{package }com.example.ekawa;
+00002 
+00003 \textcolor{keyword}{import} android.bluetooth.BluetoothAdapter;
+00004 \textcolor{keyword}{import} android.bluetooth.BluetoothDevice;
+00005 \textcolor{keyword}{import} android.content.BroadcastReceiver;
+00006 \textcolor{keyword}{import} android.content.Context;
+00007 \textcolor{keyword}{import} android.content.Intent;
+00008 \textcolor{keyword}{import} android.content.IntentFilter;
+00009 \textcolor{keyword}{import} android.os.Build;
+00010 \textcolor{keyword}{import} android.os.Handler;
+00011 \textcolor{keyword}{import} android.os.Message;
+00012 \textcolor{keyword}{import} android.util.Log;
+00013 \textcolor{keyword}{import} android.widget.Toast;
+00014 
+00015 \textcolor{keyword}{import} androidx.appcompat.app.AppCompatActivity;
+00016 
+00017 \textcolor{keyword}{import} java.util.Set;
+00018 
+\Hypertarget{_communication_8java_source_l00031}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication}{00031} \textcolor{keyword}{public} \textcolor{keyword}{class }\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication}{Communication}
+00032 \{
+\Hypertarget{_communication_8java_source_l00036}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_af355bac38153a4e6d1cda0b3e74bc1c7}{00036}     \textcolor{keyword}{private} \textcolor{keyword}{static} \textcolor{keyword}{final} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_af355bac38153a4e6d1cda0b3e74bc1c7}{TAG} = \textcolor{stringliteral}{"Communication"}; 
+\Hypertarget{_communication_8java_source_l00037}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a85da929bac3fd83864a79ed4c3a57044}{00037}     \textcolor{keyword}{private} \textcolor{keyword}{final} \textcolor{keyword}{static} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a85da929bac3fd83864a79ed4c3a57044}{EKAWA} = \textcolor{stringliteral}{"ekawa-"}; 
+00038 
+\Hypertarget{_communication_8java_source_l00042}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a2f49177a9865ed41a759bce83658bb6e}{00042}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a2f49177a9865ed41a759bce83658bb6e}{activee} = \textcolor{keyword}{false}; 
+\Hypertarget{_communication_8java_source_l00043}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a93d9caaa9d4454a32d9dc28a6f22d2eb}{00043}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a93d9caaa9d4454a32d9dc28a6f22d2eb}{connectee} = \textcolor{keyword}{false}; 
+\Hypertarget{_communication_8java_source_l00044}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0ed43f74b2eae7e8f150b049953da384}{00044}     \textcolor{keyword}{private} BluetoothAdapter \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0ed43f74b2eae7e8f150b049953da384}{bluetooth} = null; 
+\Hypertarget{_communication_8java_source_l00045}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a59a25b4807148701560e4341f79c0c16}{00045}     \textcolor{keyword}{private} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a59a25b4807148701560e4341f79c0c16}{peripherique} = null; 
+\Hypertarget{_communication_8java_source_l00046}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_aa5ae3c4eaab6ec31d3b358431e812d00}{00046}     \textcolor{keyword}{private} Context \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_aa5ae3c4eaab6ec31d3b358431e812d00}{context}; 
+\Hypertarget{_communication_8java_source_l00047}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a3b69b78cdf60bc35b2e3e564519dc1b6}{00047}     \textcolor{keyword}{private} \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere}{Cafetiere} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a3b69b78cdf60bc35b2e3e564519dc1b6}{cafetiere}; 
+00048 
+\Hypertarget{_communication_8java_source_l00052}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_ae1e1b4415de23491b36f0bd70da2f164}{00052}     \textcolor{keyword}{private} \textcolor{keyword}{final} Handler \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_ae1e1b4415de23491b36f0bd70da2f164}{handler} = \textcolor{keyword}{new} Handler()
+00053     \{
+00054         \textcolor{keyword}{public} \textcolor{keywordtype}{void} handleMessage(Message msg)
+00055         \{
+00056             super.handleMessage(msg);
+00057             \textcolor{keywordflow}{switch} (msg.what)
+00058             \{
+00059                 \textcolor{keywordflow}{case} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_addb8ee767dc82567360551db1004463e}{CODE\_CONNEXION}:
+00060                     connectee = \textcolor{keyword}{true};
+00061                     cafetiere.\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad8c8b7d410315f55a216de809571fd87}{actualiserIHM}();
+00062                     peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ac1361bc1a445b00c4c7ebb56dfee274d}{envoyer}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.
+      \hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a6a93842b8987e56582d83c778305840a}{fabriquerTrameTestAlive}());
+00063                     \textcolor{keywordflow}{break};
+00064                 \textcolor{keywordflow}{case} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a532f5da1747b68217b8764db9b85e845}{CODE\_RECEPTION}:
+00065                     cafetiere.\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_aba42bba06ffbf08735d7f548bcce9f42}{changerEtats}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0ca98776b3fe48fa76e134607edb7871}{recevoirTrame}((String) msg.obj));
+00066                     \textcolor{keywordflow}{break};
+00067                 \textcolor{keywordflow}{case} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a99f0e30a113d64b30598c6305657dcee}{CODE\_DECONNEXION}:
+00068                     connectee = \textcolor{keyword}{false};
+00069                     cafetiere.\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad8c8b7d410315f55a216de809571fd87}{actualiserIHM}();
+00070                     \textcolor{keywordflow}{break};
+00071             \}
+00072         \}
+00073     \};
+00074 
+\Hypertarget{_communication_8java_source_l00078}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a7fb7acee2a343c884103481715ab4e65}{00078}     \textcolor{keyword}{private} \textcolor{keyword}{final} BroadcastReceiver \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a7fb7acee2a343c884103481715ab4e65}{detectionChangementEtatBluetooth}()
+00079     \{
+00080         BroadcastReceiver receiverEtatBluetooth = \textcolor{keyword}{new} BroadcastReceiver()
+00081         \{
+00082             @Override
+00083             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onReceive(Context context, Intent intent)
+00084             \{
+00085                 \textcolor{keyword}{final} String action = intent.getAction();
+00086                 Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] action : "} + action);
+00087                 \textcolor{keywordflow}{if} (action.equals(BluetoothAdapter.ACTION\_STATE\_CHANGED))
+00088                 \{
+00089                     \textcolor{keyword}{final} \textcolor{keywordtype}{int} state = intent.getIntExtra(BluetoothAdapter.EXTRA\_STATE, BluetoothAdapter.
+      ERROR);
+00090                     \textcolor{keywordflow}{switch} (state)
+00091                     \{
+00092                         \textcolor{keywordflow}{case} BluetoothAdapter.STATE\_OFF:
+00093                             Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] bluetooth désactivé !"});
+00094                             activee = \textcolor{keyword}{false};
+00095                             cafetiere.\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad8c8b7d410315f55a216de809571fd87}{actualiserIHM}();
+00096                             \textcolor{keywordflow}{break};
+00097                         \textcolor{keywordflow}{case} BluetoothAdapter.STATE\_TURNING\_OFF:
+00098                             Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] bluetooth en cours de
+       désactivation !"});
+00099                             \textcolor{keywordflow}{break};
+00100                         \textcolor{keywordflow}{case} BluetoothAdapter.STATE\_ON:
+00101                             Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] bluetooth activé !"});
+00102                             activee = \textcolor{keyword}{true};
+00103                             cafetiere.\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_ad8c8b7d410315f55a216de809571fd87}{actualiserIHM}();
+00104                             \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_afc96e58f53fc167fe9fc76a229c01cb0}{chercherCafetiere}();
+00105                             \textcolor{keywordflow}{break};
+00106                         \textcolor{keywordflow}{case} BluetoothAdapter.STATE\_TURNING\_ON:
+00107                             Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] bluetooth en cours d'activation !
+      "});
+00108                             \textcolor{keywordflow}{break};
+00109                         \textcolor{keywordflow}{default}:
+00110                             Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] etat : "} + state);
+00111                             \textcolor{keywordflow}{break};
+00112                     \}
+00113                 \}
+00114                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (action.equals(BluetoothDevice.ACTION\_ACL\_DISCONNECTED))
+00115                 \{
+00116                     Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] bluetooth déconnecté !"});
+00117                     connectee = \textcolor{keyword}{false};
+00118                     cafetiere.\hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere_a10a040b45cfaac52cd5c26049bf2d7b7}{remettreAZero}();
+00119                 \}
+00120                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if}(action.equals(BluetoothDevice.ACTION\_BOND\_STATE\_CHANGED))
+00121                 \{
+00122                     \textcolor{keyword}{final} \textcolor{keywordtype}{int} state = intent.getIntExtra(BluetoothDevice.EXTRA\_BOND\_STATE, BluetoothAdapter
+      .ERROR);
+00123                     \textcolor{keywordflow}{if}(state == BluetoothDevice.BOND\_BONDED)
+00124                     \{
+00125                         Log.d(TAG,\textcolor{stringliteral}{"[detectionChangementEtatBluetooth] cafetière appairée !"});
+00126                         peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_aeec8c1b360496726a5aecd6c129de81b}{connecter}();
+00127                         \textcolor{keywordflow}{if}(peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a963c20e3fba4ed926e9dee972e3b6b39}{estConnecte}())
+00128                             connectee = \textcolor{keyword}{true};
+00129                     \}
+00130                 \}
+00131             \}
+00132         \};
+00133 
+00134         \textcolor{keywordflow}{return} receiverEtatBluetooth;
+00135     \}
+00136 
+\Hypertarget{_communication_8java_source_l00140}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a4e46e30e8c22ae617b52260d198a76ca}{00140}     \textcolor{keyword}{private} \textcolor{keyword}{final} BroadcastReceiver \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a4e46e30e8c22ae617b52260d198a76ca}{detectionPeripherique}()
+00141     \{
+00142         BroadcastReceiver receiverDetectionBluetooth = \textcolor{keyword}{new} BroadcastReceiver()
+00143         \{
+00144             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onReceive(Context context, Intent intent)
+00145             \{
+00146                 \textcolor{keywordtype}{boolean} appaire = \textcolor{keyword}{false};
+00147 
+00148                 String action = intent.getAction();
+00149                 Log.d(TAG, \textcolor{stringliteral}{"[receiverDetectionBluetooth] action : "} + action);
+00150 
+00151                 \textcolor{keywordflow}{if} (BluetoothAdapter.ACTION\_DISCOVERY\_STARTED.equals(action))
+00152                 \{
+00153                     Log.d(TAG, \textcolor{stringliteral}{"[receiverDetectionBluetooth] découverte démarrée"});
+00154                 \}
+00155                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (BluetoothAdapter.ACTION\_DISCOVERY\_FINISHED.equals(action))
+00156                 \{
+00157                     Log.d(TAG, \textcolor{stringliteral}{"[receiverDetectionBluetooth] découverte terminée"});
+00158                 \}
+00159                 \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (BluetoothDevice.ACTION\_FOUND.equals(action))
+00160                 \{
+00161                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA\_DEVICE);
+00162                     Log.d(TAG,\textcolor{stringliteral}{"[receiverDetectionBluetooth] device détecté : "} + device.getName() + \textcolor{stringliteral}{" ["} + 
+      device.getAddress() + \textcolor{stringliteral}{"]"});
+00163                     \textcolor{keywordflow}{if} (device.getName() != null && device.getName().startsWith(EKAWA))
+00164                     \{
+00165                         Toast.makeText(context, \textcolor{stringliteral}{"Trouvé : "} + device.getName(), Toast.LENGTH\_LONG).show();
+00166                         \textcolor{keywordflow}{if} (device.getBondState() != BluetoothDevice.BOND\_BONDED)
+00167                         \{
+00168                             Log.d(TAG,\textcolor{stringliteral}{"[receiverDetectionBluetooth] cafetière détectée mais non appairée !"}
+      );
+00169                             \textcolor{keywordflow}{if}(Build.VERSION.SDK\_INT >= 19)
+00170                             \{
+00171                                 appaire = device.createBond(); \textcolor{comment}{// appairage}
+00172                             \}
+00173                             \textcolor{keywordflow}{else}
+00174                             \{
+00175                                 Toast.makeText(context, \textcolor{stringliteral}{"Veuillez associer votre cafetière Ekawa au
+       bluetooth manuellement."}, Toast.LENGTH\_LONG).show();
+00176                             \}
+00177                         \}
+00178                         \textcolor{keywordflow}{if} (device.getBondState() == BluetoothDevice.BOND\_BONDED || appaire)
+00179                         \{
+00180                             Log.d(TAG, \textcolor{stringliteral}{"[receiverDetectionBluetooth] cafetière appairée : "} + device.
+      getName() + \textcolor{stringliteral}{" ["} + device.getAddress() + \textcolor{stringliteral}{"]"});
+00181                             \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a41f24da10de9e598f65941bf55320566}{creerPeripherique}(device);
+00182                             bluetooth.cancelDiscovery();
+00183                         \}
+00184                     \}
+00185                 \}
+00186             \}
+00187         \};
+00188 
+00189         \textcolor{keywordflow}{return} receiverDetectionBluetooth;
+00190     \};
+00191 
+\Hypertarget{_communication_8java_source_l00195}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a78557db29f39808417c9fa4435b90d3b}{00195}     \textcolor{keyword}{public} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a78557db29f39808417c9fa4435b90d3b}{Communication}(AppCompatActivity activity, \hyperlink{classcom_1_1example_1_1ekawa_1_1_cafetiere}{Cafetiere} cafetiere)
+00196     \{
+00197         Log.d(TAG,\textcolor{stringliteral}{"Communication()"});
+00198         this.context = activity.getApplicationContext();
+00199         this.cafetiere = \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a3b69b78cdf60bc35b2e3e564519dc1b6}{cafetiere};
+00200         bluetooth = BluetoothAdapter.getDefaultAdapter();
+00201         \textcolor{keywordflow}{if}(bluetooth != null)
+00202         \{
+00203             \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a6640c878b7a4c97af7ccda45e33ead80}{installerDetectionEtatBluetooth}();
+00204             \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a64e0731414722f27a990d8ac884aca83}{activer}();
+00205         \}
+00206         \textcolor{keywordflow}{else}
+00207         \{
+00208             Log.d(TAG,\textcolor{stringliteral}{"Pas de bluetooth ?"});
+00209         \}
+00210     \}
+00211 
+\Hypertarget{_communication_8java_source_l00215}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a64e0731414722f27a990d8ac884aca83}{00215}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a64e0731414722f27a990d8ac884aca83}{activer}()
+00216     \{
+00217         \textcolor{keywordflow}{if} (!bluetooth.isEnabled())
+00218             bluetooth.enable();
+00219         activee = \textcolor{keyword}{true};
+00220         \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_afc96e58f53fc167fe9fc76a229c01cb0}{chercherCafetiere}();
+00221     \}
+00222 
+\Hypertarget{_communication_8java_source_l00226}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_af0cb2a6a5c1674a7204174ba786e8596}{00226}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_af0cb2a6a5c1674a7204174ba786e8596}{connecter}()
+00227     \{
+00228         \textcolor{keywordflow}{if}(bluetooth.isEnabled())
+00229         \{
+00230             \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_afc96e58f53fc167fe9fc76a229c01cb0}{chercherCafetiere}();
+00231         \}
+00232     \}
+00233 
+\Hypertarget{_communication_8java_source_l00237}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a230dde1900a47e26832b7467eddc556a}{00237}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a230dde1900a47e26832b7467eddc556a}{desactiver}()
+00238     \{
+00239         \textcolor{keywordflow}{if}(bluetooth.isEnabled())
+00240         \{
+00241             \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a024ca42abcc8727d303a54ec44b4c99b}{deconnecter}();
+00242             bluetooth.disable();
+00243             activee = \textcolor{keyword}{false};
+00244         \}
+00245     \}
+00246 
+\Hypertarget{_communication_8java_source_l00250}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a024ca42abcc8727d303a54ec44b4c99b}{00250}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a024ca42abcc8727d303a54ec44b4c99b}{deconnecter}()
+00251     \{
+00252         \textcolor{keywordflow}{if}(bluetooth.isEnabled())
+00253             peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_aadfd24f4d783a7834c044041c7c035bb}{deconnecter}();
+00254         connectee = \textcolor{keyword}{false};
+00255     \}
+00256 
+\Hypertarget{_communication_8java_source_l00260}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0c591a578528edaa5bb665cede5738bc}{00260}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0c591a578528edaa5bb665cede5738bc}{estConnectee}()
+00261     \{
+00262         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a93d9caaa9d4454a32d9dc28a6f22d2eb}{connectee};
+00263     \}
+00264 
+\Hypertarget{_communication_8java_source_l00268}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a1007662e44cb2d0af3bef6d36246bf9a}{00268}     \textcolor{keyword}{public} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a1007662e44cb2d0af3bef6d36246bf9a}{estActivee}()
+00269     \{
+00270         \textcolor{keywordflow}{return} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a2f49177a9865ed41a759bce83658bb6e}{activee};
+00271     \}
+00272 
+\Hypertarget{_communication_8java_source_l00276}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_afc96e58f53fc167fe9fc76a229c01cb0}{00276}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_afc96e58f53fc167fe9fc76a229c01cb0}{chercherCafetiere}()
+00277     \{
+00278         Set<BluetoothDevice> devices;
+00279 
+00280         \textcolor{keywordflow}{if}(peripherique != null)
+00281             peripherique = null;
+00282 
+00283         devices = bluetooth.getBondedDevices();
+00284         \textcolor{keywordflow}{for}(BluetoothDevice blueDevice : devices)
+00285         \{
+00286             Log.d(TAG,\textcolor{stringliteral}{"[chercherCafetiere] device : "} + blueDevice.getName() + \textcolor{stringliteral}{" ["} + blueDevice.getAddress
+      () + \textcolor{stringliteral}{"]"});
+00287             \textcolor{keywordflow}{if}(blueDevice.getName().startsWith(EKAWA))
+00288             \{
+00289                 Log.d(TAG,\textcolor{stringliteral}{"[chercherCafetiere] cafetière : "} + blueDevice.getName() + \textcolor{stringliteral}{" ["} + blueDevice.
+      getAddress() + \textcolor{stringliteral}{"]"});
+00290                 \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a41f24da10de9e598f65941bf55320566}{creerPeripherique}(blueDevice);
+00291                 peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_aeec8c1b360496726a5aecd6c129de81b}{connecter}();
+00292                 \textcolor{keywordflow}{if}(peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_a963c20e3fba4ed926e9dee972e3b6b39}{estConnecte}())
+00293                     connectee = \textcolor{keyword}{true};
+00294                 Toast.makeText(context, \textcolor{stringliteral}{"Cafetière : "} + peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenirNom}(), Toast.
+      LENGTH\_LONG).show();
+00295                 \textcolor{keywordflow}{break};
+00296             \}
+00297         \}
+00298 
+00299         \textcolor{keywordflow}{if}(peripherique == null)
+00300         \{
+00301             Log.d(TAG,\textcolor{stringliteral}{"[chercherCafetiere] cafetière ekawa non trouvée !"});
+00302             \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a4b8036f1d4f4f37e15c85886af645900}{demarrerRecherche}();
+00303         \}
+00304     \}
+00305 
+\Hypertarget{_communication_8java_source_l00309}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{00309}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a98808d0236e547b9a3ee485f66aa7af0}{envoyerTrame}(String trame)
+00310     \{
+00311         \textcolor{keywordflow}{if}(peripherique != null)
+00312             peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ac1361bc1a445b00c4c7ebb56dfee274d}{envoyer}(trame);
+00313     \}
+00314 
+\Hypertarget{_communication_8java_source_l00318}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0ca98776b3fe48fa76e134607edb7871}{00318}     \textcolor{keyword}{public} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a0ca98776b3fe48fa76e134607edb7871}{recevoirTrame}(String trame)
+00319     \{
+00320         Log.d(TAG,\textcolor{stringliteral}{"Recu : "} + trame);
+00321         \textcolor{keywordflow}{if}(\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a6421eb8129e103841f088870610b1b33}{verifierTrame}(trame))
+00322             \textcolor{keywordflow}{return} trame;
+00323         \textcolor{keywordflow}{return} null;
+00324     \}
+00325 
+\Hypertarget{_communication_8java_source_l00329}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a6421eb8129e103841f088870610b1b33}{00329}     \textcolor{keyword}{private} \textcolor{keywordtype}{boolean} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a6421eb8129e103841f088870610b1b33}{verifierTrame}(String trame)
+00330     \{
+00331         \textcolor{keywordflow}{if}(trame.startsWith(\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole}{Protocole}.\hyperlink{classcom_1_1example_1_1ekawa_1_1_protocole_a9a73b15a5d0408ae423cc6f4ff3e7c21}{DEBUT\_TRAME}))
+00332             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+00333         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+00334     \}
+00335 
+\Hypertarget{_communication_8java_source_l00339}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a6640c878b7a4c97af7ccda45e33ead80}{00339}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a6640c878b7a4c97af7ccda45e33ead80}{installerDetectionEtatBluetooth}()
+00340     \{
+00341         IntentFilter filter = \textcolor{keyword}{new} IntentFilter(BluetoothAdapter.ACTION\_STATE\_CHANGED);
+00342         filter.addAction(BluetoothDevice.ACTION\_ACL\_DISCONNECTED);
+00343         filter.addAction(BluetoothDevice.ACTION\_BOND\_STATE\_CHANGED);
+00344         context.registerReceiver(\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a7fb7acee2a343c884103481715ab4e65}{detectionChangementEtatBluetooth}(), filter
+      );
+00345     \}
+00346 
+\Hypertarget{_communication_8java_source_l00350}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a4b8036f1d4f4f37e15c85886af645900}{00350}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a4b8036f1d4f4f37e15c85886af645900}{demarrerRecherche}()
+00351     \{
+00352         IntentFilter filter = \textcolor{keyword}{new} IntentFilter(BluetoothDevice.ACTION\_FOUND);
+00353         filter.addAction(BluetoothAdapter.ACTION\_DISCOVERY\_STARTED);
+00354         filter.addAction(BluetoothAdapter.ACTION\_DISCOVERY\_FINISHED);
+00355         context.registerReceiver(\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a4e46e30e8c22ae617b52260d198a76ca}{detectionPeripherique}(), filter);
+00356         \textcolor{keywordflow}{if}(bluetooth.isDiscovering())
+00357             bluetooth.cancelDiscovery();
+00358         \textcolor{keywordtype}{boolean} etatDemarrageDecouverte = bluetooth.startDiscovery();
+00359         Log.d(TAG,\textcolor{stringliteral}{"[chercherCafetiere] démarrage découverte bluetooth "} + etatDemarrageDecouverte);
+00360     \}
+00361 
+\Hypertarget{_communication_8java_source_l00365}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a41f24da10de9e598f65941bf55320566}{00365}     \textcolor{keyword}{private} \textcolor{keywordtype}{void} \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a41f24da10de9e598f65941bf55320566}{creerPeripherique}(BluetoothDevice peripherique)
+00366     \{
+00367         Log.d(TAG,\textcolor{stringliteral}{"[definirPeripherique] nom : "} + peripherique.getName());
+00368         \textcolor{keywordflow}{if}(this.peripherique != null)
+00369         \{
+00370             this.peripherique.deconnecter();
+00371             this.peripherique = null;
+00372         \}
+00373         this.peripherique = \textcolor{keyword}{new} \hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique}{Peripherique}(peripherique, handler);
+00374     \}
+00375 
+\Hypertarget{_communication_8java_source_l00379}\hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a133dd63afcf2d2f1229a416abe099494}{00379}     \textcolor{keyword}{public} String \hyperlink{classcom_1_1example_1_1ekawa_1_1_communication_a133dd63afcf2d2f1229a416abe099494}{obtenirNomPeripherique}()
+00380     \{
+00381         \textcolor{keywordflow}{if}(peripherique != null)
+00382             \textcolor{keywordflow}{return} peripherique.\hyperlink{classcom_1_1example_1_1ekawa_1_1_peripherique_ad54cfafe03dfcf18cbd9b20602c4d86e}{obtenirNom}();
+00383         \textcolor{keywordflow}{return} null;
+00384     \}
+00385 \}
+\end{DoxyCode}

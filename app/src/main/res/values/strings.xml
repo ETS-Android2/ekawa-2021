@@ -1,0 +1,12 @@
+<resources>
+    <string name="nom_app">Ekawa</string>
+    <string name="nom_developeur">LECOMTE Jean-Luc</string>
+    <string name="version_app">0.3</string>
+    <string name="mail">lecomte.jeanluc.pro@gmail.com</string>
+    <string name="title_general">Général</string>
+    <string name="titre_programmer">Programmer</string>
+    <string name="titre_info">Informations</string>
+    <string name="titre_parametre">Paramètres</string>
+
+    <string name="recommandation_EFSA">D\'après l\'EFSA (European Food Safety Authority), le nombre de café recommandé par jour est de 4 cafés soit 400ml/j.</string>
+</resources>
